@@ -23,5 +23,10 @@ app.post('/login', (req, res) => {
     res.send(`Username: ${username} Password: ${password}`); // TODO: delete?
 
     // TODO: submit hit backend server to register user and set current ID to that of playerId returned
-    
+
 });
+
+const port = 3000 // Port we will listen on
+
+// Function to listen on the port
+app.listen(port, () => console.log(`This app is listening on port ${port}`));
