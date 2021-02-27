@@ -18,9 +18,9 @@ app.get('/login', (req, res) => {
 // Route to Login Information
 app.post('/login', (req, res) => {
     // Insert Login Code Here
-    let username = req.body.username;
-    let password = req.body.password;
-    res.send(`Username: ${username} Password: ${password}`); // TODO: delete?
+    let playerName = req.body.playerName;
+    let gameId = req.body.gameId;
+    res.send(`Player Name: ${playerName} Game ID: ${gameId}`); // TODO: delete?
 
     // TODO: submit hit backend server to register user and set current ID to that of playerId returned
 
