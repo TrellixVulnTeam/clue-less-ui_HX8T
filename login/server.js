@@ -1,5 +1,6 @@
 const express = require('express'); // Include ExpressJS
 const app = express(); // Create an ExpressJS app
+var request = require('request');
 
 const bodyParser = require('body-parser'); // middleware
 
@@ -23,10 +24,17 @@ app.post('/login', (req, res) => {
     res.send(`Player Name: ${playerName} Game ID: ${gameId}`); // TODO: delete?
 
     // TODO: submit hit backend server to register user and set current ID to that of playerId returned
-
+    //http://localhost:3000/_getproduct/8821264
+    request.post({ url: "http://localhost:8080/games/"},      function(error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.json(body);
+                }
+            });
 });
 
 const port = 3000 // Port we will listen on
 
-// Function to listen on the port
+// Start listening
+app.use(express.static(__dirname + '/public'));
 app.listen(port, () => console.log(`This app is listening on port ${port}`));
+

@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html>
-  <head>
-	<title>Clue-less Login Page</title>
-  </head>
-  <body>
-	<form action="/login" method="post">
-  	<!-- user input-->
-  	Player Name:<br>
-  	<input type="text" name="playerName" placeholder="Player Name" required><br><br>
-  	Game ID:<br>
-  	<input type="text" name="gameId" placeholder="Game ID" required><br><br>
-  	<!-- submit button -->
-  	<input type="submit" value="login">
-	</form>
-  </body>
-</html>
+<link rel="stylesheet" type="text/css" href="/css/login.css">
+<div class="login">
+    <h1>Login to Web App</h1>
+    <form method="post" action="">
+      <p><input type="text" name="playerName" value="" placeholder="Player Name"></p>
+      <p><input type="text" name="gameId" value="" placeholder="Game ID"></p>
+      <p class="remember_me"></p>
+      <p class="submit"><input type="submit" name="commit" value="Join Game"></p>
+    </form>
+  </div>
