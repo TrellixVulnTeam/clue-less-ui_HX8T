@@ -41,8 +41,7 @@ app.post('/login', (req, res) => {
     // TODO: submit hit backend server to register user and set current ID to that of playerId returned
     res_body = helpers.http_request(`${backend_host}`, `${backend_port}`, context_path=`/games/?name=${playerName}`, 'POST');
     console.log(`${playerName} initialized a new game!`);
-    console.log(`${res_body}`)
-
+    // console.log(`${res_body}`)
 });
 
 // Start listening
