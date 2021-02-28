@@ -38,10 +38,13 @@ app.post('/login', (req, res) => {
     let gameId = req.body.gameId;
     res.send(`Player Name: ${playerName} Game ID: ${gameId}`); // TODO: delete?
 
-    // TODO: submit hit backend server to register user and set current ID to that of playerId returned
-    res_body = helpers.http_request(`${backend_host}`, `${backend_port}`, context_path=`/games/?name=${playerName}`, 'POST');
     console.log(`${playerName} initialized a new game!`);
-    // console.log(`${res_body}`)
+
+    // TODO: submit hit backend server to register user and set current ID to that of playerId returned
+    var body = helpers.http_request(`${backend_host}:${backend_port}/games/?name=${playerName}`, 'post')
+
+    console.log(body);
+
 });
 
 // Start listening
