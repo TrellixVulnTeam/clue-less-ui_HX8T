@@ -1,10 +1,25 @@
+// Import helpers
+let helpers = require('./helpers');
+
 const express = require('express'); // Include ExpressJS
 const app = express(); // Create an ExpressJS app
-var request = require('request');
 
-const bodyParser = require('body-parser'); // middleware
+// Read Properties
+var propertiesReader = require('properties-reader');
+var properties = propertiesReader(__dirname + '/config/application.properties');
 
+// Set constants from properties
+const port = properties.get('application.port'); // Port we will listen on
+const backend_host = properties.get('backend.host'); // Hostname for connecting with backend server
+const backend_port = properties.get('backend.port'); // Port for connecting with backend server
+
+console.log(`Application Port: ${port}`);
+console.log(`Backend Host: ${backend_host}`);
+console.log(`Backend Port: ${backend_port}`);
+
+var bodyParser = require('body-parser'); // middleware
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json())
 
 // Route to Homepage
 app.get('/', (req, res) => {
@@ -24,15 +39,11 @@ app.post('/login', (req, res) => {
     res.send(`Player Name: ${playerName} Game ID: ${gameId}`); // TODO: delete?
 
     // TODO: submit hit backend server to register user and set current ID to that of playerId returned
-    //http://localhost:3000/_getproduct/8821264
-    request.post({ url: "http://localhost:8080/games/"},      function(error, response, body) {
-            if (!error && response.statusCode == 200) {
-                res.json(body);
-                }
-            });
-});
+    res_body = helpers.http_request(`${backend_host}`, `${backend_port}`, context_path=`/games/?name=${playerName}`, 'POST');
+    console.log(`${playerName} initialized a new game!`);
+    console.log(`${res_body}`)
 
-const port = 3000 // Port we will listen on
+});
 
 // Start listening
 app.use(express.static(__dirname + '/public'));
