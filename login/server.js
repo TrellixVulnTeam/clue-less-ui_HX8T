@@ -41,9 +41,29 @@ app.post('/login', (req, res) => {
     console.log(`${playerName} initialized a new game!`);
 
     // TODO: submit hit backend server to register user and set current ID to that of playerId returned
-    var body = helpers.http_request(`${backend_host}:${backend_port}/games/?name=${playerName}`, 'post')
+    
+    // ***************** ZACHS TEST CODE *****************
 
-    console.log(body);
+    const axios = require('axios')
+
+    const http_test = async () => {
+
+        var full_url = `${backend_host}:${backend_port}/games/?name=${playerName}`;
+        var payload = {};
+
+        // const response = await axios.post(full_url, payload)
+        const response = await axios.get(`${backend_host}:${backend_port}/games/`)
+        return response.data
+    }
+
+    http_test()
+        .then(response => {console.log(response)})
+        .catch;
+
+    // ***************** ZACHS TEST CODE *****************
+
+    //var body = helpers.http_request(`${backend_host}:${backend_port}/games/?name=${playerName}`, 'post')
+    //console.log(body);
 
 });
 
