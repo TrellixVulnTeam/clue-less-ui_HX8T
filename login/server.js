@@ -39,7 +39,7 @@ app.post('/login', (req, res) => {
     // Insert Login Code Here
     let playerName = req.body.playerName;
 
-    console.log(`${playerName} initialized a new game!`);
+    console.log(`login request received from player: ${playerName}`);
 
     const http_login = async () => {
         let full_url = `${backend_host}:${backend_port}/games/?name=${playerName}`
