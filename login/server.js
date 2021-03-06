@@ -17,6 +17,9 @@ console.log(`Application Port: ${port}`);
 console.log(`Backend Host: ${backend_host}`);
 console.log(`Backend Port: ${backend_port}`);
 
+// Configure Axios
+const axios = require('axios')
+
 var bodyParser = require('body-parser'); // middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json())
@@ -35,35 +38,26 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
     // Insert Login Code Here
     let playerName = req.body.playerName;
-    let gameId = req.body.gameId;
-    res.send(`Player Name: ${playerName} Game ID: ${gameId}`); // TODO: delete?
 
     console.log(`${playerName} initialized a new game!`);
 
-    // TODO: submit hit backend server to register user and set current ID to that of playerId returned
-    
-    // ***************** ZACHS TEST CODE *****************
-
-    const axios = require('axios')
-
-    const http_test = async () => {
-
-        var full_url = `${backend_host}:${backend_port}/games/?name=${playerName}`;
-        var payload = {};
-
-        // const response = await axios.post(full_url, payload)
-        const response = await axios.get(`${backend_host}:${backend_port}/games/`)
-        return response.data
+    const http_login = async () => {
+        let full_url = `${backend_host}:${backend_port}/games/?name=${playerName}`
+        var body = await axios.post(full_url, {})
+            .then((res)=>{
+                return res.data;
+            }).catch((err)=>{
+                console.log(`OH NO ERROR: ${err}`);
+            })
+        return await body; 
     }
 
-    http_test()
-        .then(response => {console.log(response)})
+    http_login()
+        .then(response => {
+            console.log(`Games ID: ${JSON.stringify(response.gameId)}`);
+            res.send(`Games ID: ${JSON.stringify(response.gameId)}`); // present in web page
+        })
         .catch;
-
-    // ***************** ZACHS TEST CODE *****************
-
-    //var body = helpers.http_request(`${backend_host}:${backend_port}/games/?name=${playerName}`, 'post')
-    //console.log(body);
 
 });
 
