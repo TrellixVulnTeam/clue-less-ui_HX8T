@@ -1,6 +1,11 @@
 <h1>{{ title }}</h1>
-<ul>
-  <li *ngFor="let player of players">
-    {{ player.name }}
-  </li>
-</ul>
+<table>
+  <tr>
+    <th>Player Name</th>
+    <th>Player ID</th>
+  </tr>
+  <tr *ngFor="let player of players">
+    <td>{{ player.name }}</td>
+    <td>{{ player.id }}</td>
+  </tr>
+</table>
