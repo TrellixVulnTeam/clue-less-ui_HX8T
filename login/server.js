@@ -1,6 +1,3 @@
-// Import helpers
-let helpers = require('./helpers');
-
 const express = require('express'); // Include ExpressJS
 const app = express(); // Create an ExpressJS app
 
@@ -41,7 +38,7 @@ app.post('/login', (req, res) => {
 
     console.log(`login request received from player: ${playerName}`);
 
-    const http_login = async () => {
+    const http_request = async () => {
         let full_url = `${backend_host}:${backend_port}/games/?name=${playerName}`
         var body = await axios.post(full_url, {})
             .then((res)=>{
@@ -52,14 +49,25 @@ app.post('/login', (req, res) => {
         return await body; 
     }
 
-    http_login()
+    http_request()
         .then(response => {
             console.log(`Games ID: ${JSON.stringify(response.gameId)}`);
-            res.send(`Games ID: ${JSON.stringify(response.gameId)}`); // present in web page
-        })
-        .catch;
-
+            // res.send(`Games ID: ${JSON.stringify(response.gameId)}`);
+            // req.session.playerName = playerName;
+            // req.session.gameInfo = response;
+            res.redirect(`/game?playerName=${playerName}`);
+        }).catch;
 });
+
+// Route to Login Page
+app.get('/game', (req, res) => {
+    // var playerName = req.query.playerName;
+    res.render('pages/game')
+});
+
+// Set dynamic views
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 // Start listening
 app.use(express.static(__dirname + '/public'));
