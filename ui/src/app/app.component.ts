@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Config } from 'protractor';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ui';
+
+  constructor(private http: HttpClient) { }
+  
+  // players: JSON | undefined;
+  // players = this.httpRequest('http://localhost:8080/games/1/players');
+  
+  httpRequest(url: string) {
+    return this.http.get(url);
+  }
 }
