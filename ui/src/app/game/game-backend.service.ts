@@ -13,12 +13,13 @@ export class GameBackendService {
   
   gameUrl: string;
   gameData$: Observable<Game>;
-  refreshInterval = 3000; // every 3 seconds
+  refreshInterval = 5000; // every 5 seconds
 
   constructor(private http: HttpClient) {
-    this.gameUrl = "http://localhost:8080/games/1/";
-      this.gameData$ = timer(1, this.refreshInterval).pipe( // will constanctly check the backend for updates to game data
-        switchMap(() => http.get<Game>(this.gameUrl))
-      );
+    this.gameUrl = "http://localhost:8080/games/1/"; // TODO include game identifier
+
+    this.gameData$ = timer(1, this.refreshInterval).pipe( // will constanctly check the backend for updates to game data
+      switchMap(() => http.get<Game>(this.gameUrl))
+    );
   }
 }
