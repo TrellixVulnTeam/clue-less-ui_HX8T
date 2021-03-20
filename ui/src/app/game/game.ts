@@ -2,11 +2,13 @@ import {Player} from './player';
 
 export class Game {
         
-    id!: number;
+    gameId!: number;
     players!: Player[];
+    hasStarted!: boolean;
 
     constructor(public newGame: Game) {
-        this.id = newGame.id;
+        this.gameId = newGame.gameId;
         this.players = newGame.players;
+        this.hasStarted = newGame.hasStarted;
     }
 }

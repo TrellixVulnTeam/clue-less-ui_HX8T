@@ -5,7 +5,6 @@ export class Player {
     //position!: number[];
     isTurn!: boolean;
 
-
     constructor(public playerName: string, public playerId: number, public playerTurn: boolean) {
         this.setName(playerName);
         this.setId(playerId);
