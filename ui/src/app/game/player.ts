@@ -2,12 +2,15 @@ export class Player {
         
     name!: string;
     id!: number;
-    position!: number[];
+    //position!: number[];
+    isTurn!: boolean;
 
-    constructor(public playerName: string, public playerId: number, public playerPosition: number[]) {
+
+    constructor(public playerName: string, public playerId: number, public playerPosition: number[], public playerTurn: boolean) {
         this.setName(playerName);
         this.setId(playerId);
-        this.setPosition(playerPosition);
+        //this.setPosition(playerPosition);
+        this.setTurn(playerTurn);
     }
     
     setName(playerName: string) {
@@ -18,7 +21,11 @@ export class Player {
         this.id = playerId;
     }
 
-    setPosition(playerPosition: number[]) {
-        this.position = playerPosition;
+    // setPosition(playerPosition: number[]) {
+    //     this.position = playerPosition;
+    // }
+
+    setTurn(playerTurn: boolean) {
+        this.isTurn = playerTurn;
     }
 }
