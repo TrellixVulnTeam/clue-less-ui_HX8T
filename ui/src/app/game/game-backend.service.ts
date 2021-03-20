@@ -16,7 +16,7 @@ export class GameBackendService {
   refreshInterval = 5000; // every 5 seconds
 
   constructor(private http: HttpClient) {
-    this.gameUrl = "http://13.59.168.199/:8080/games/1/"; // TODO include game identifier
+    this.gameUrl = "http://13.59.168.199:8080/games/1/"; // TODO include game identifier
 
     this.gameData$ = timer(1, this.refreshInterval).pipe( // will constanctly check the backend for updates to game data
       switchMap(() => http.get<Game>(this.gameUrl))
