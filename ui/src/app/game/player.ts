@@ -6,7 +6,7 @@ export class Player {
     isTurn!: boolean;
 
 
-    constructor(public playerName: string, public playerId: number, public playerPosition: number[], public playerTurn: boolean) {
+    constructor(public playerName: string, public playerId: number, public playerTurn: boolean) {
         this.setName(playerName);
         this.setId(playerId);
         //this.setPosition(playerPosition);
