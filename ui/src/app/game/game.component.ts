@@ -17,7 +17,7 @@ export class GameComponent implements OnInit {
 
   ngOnInit(): void { 
     this.service.gameData$
-      .subscribe((data: Game) => { // sets up the subscription for game data (this is refreshed every 3 seconds in game-backend.service)
+      .subscribe((data: Game) => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)
           this.players = data.players;
       });
   }
