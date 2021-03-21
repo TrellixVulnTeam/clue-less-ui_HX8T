@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 const httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*',
-    'Origin': "http://localhost:4200"
+    'Referrer': "http://localhost:4200"
   })
 };
 
