@@ -1,4 +1,5 @@
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -20,12 +21,10 @@ export class GameBackendService {
   gameUrl: string;
   gameData$: Observable<Game>;
   refreshInterval = 5000; // every 5 seconds
-  // backend_ip: Observable<String>;
-  backend_ip = "3.137.213.188";
+  
+  backend_ip = environment.backend_ip;
 
   constructor(private http: HttpClient) {
-    
-    // this.backend_ip = getPublicIp(http);
 
     this.gameUrl = `http://${this.backend_ip}:8080/games/1/`; // TODO include game identifier
 
@@ -35,8 +34,4 @@ export class GameBackendService {
 
     // TODO: insert POST/PUT requests to backend here?
   }
-}
-
-function getPublicIp(http: HttpClient) {
-  return http.get<String>('http://169.254.169.254/latest/meta-data/public-ipv4', httpOptions);
 }
