@@ -24,7 +24,8 @@ export class GameBackendService {
 
   constructor(private http: HttpClient) {
 
-    this.backend_ip = http.get(`http://169.254.169.254/latest/meta-data/public-ipv4`, httpOptions);
+    // this.backend_ip = http.get(`http://169.254.169.254/latest/meta-data/public-ipv4`, httpOptions);
+    this.backend_ip = getPublicIp(http);
 
     this.gameUrl = `http://${this.backend_ip}/games/1/`; // TODO include game identifier
 
@@ -32,6 +33,12 @@ export class GameBackendService {
       switchMap(() => http.get<Game>(this.gameUrl, httpOptions))
     );
 
+
+
     // TODO: insert POST/PUT requests to backend here?
   }
+}
+
+function getPublicIp(http: HttpClient) {
+  return http.get('http://169.254.169.254/latest/meta-data/public-ipv4', httpOptions);
 }
