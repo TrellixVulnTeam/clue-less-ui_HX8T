@@ -1,9 +1,12 @@
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 
+const frontend_url = `http://localhost:4200`
+const backend_url = `http://localhost:8080/games`;
+
 const httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*',
-    'Origin': 'http://localhost:4200'
+    'Origin': frontend_url
   })
 };
 
@@ -21,12 +24,10 @@ export class GameBackendService {
   gameUrl: string;
   gameData$: Observable<Game>;
   refreshInterval = 5000; // every 5 seconds
-  backend_url = "http://localhost:8080/games";
-  // backend_url = "__SERVER_IP__";
 
   constructor(private http: HttpClient) {
 
-    this.gameUrl = `${this.backend_url}/1/`; // TODO include game identifier
+    this.gameUrl = `${backend_url}/1/`; // TODO include game identifier
 
     this.gameData$ = timer(1, this.refreshInterval).pipe( // will constanctly check the backend for updates to game data
       switchMap(() => http.get<Game>(this.gameUrl, httpOptions))
