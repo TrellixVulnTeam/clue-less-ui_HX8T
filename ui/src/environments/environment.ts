@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  backend_ip: "3.137.213.188"
+  backend_ip: "172.31.14.40"
 };
 
 /*
