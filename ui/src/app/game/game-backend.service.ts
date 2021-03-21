@@ -2,9 +2,7 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 
 const httpOptions = {
   headers: new HttpHeaders({ 
-    'Access-Control-Allow-Origin':'*',
-    'Authorization':'authkey',
-    'userid':'1'
+    'Access-Control-Allow-Origin':'*'
   })
 };
 
@@ -32,6 +30,6 @@ export class GameBackendService {
     this.gameData$ = timer(1, this.refreshInterval).pipe( // will constanctly check the backend for updates to game data
       switchMap(() => http.get<Game>(this.gameUrl, httpOptions))
     );
-    
+
   }
 }
