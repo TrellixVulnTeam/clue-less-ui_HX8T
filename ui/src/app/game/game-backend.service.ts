@@ -20,7 +20,7 @@ export class GameBackendService {
   gameUrl: string;
   gameData$: Observable<Game>;
   refreshInterval = 5000; // every 5 seconds
-  backend_ip: Observable<Object>;
+  backend_ip: Observable<String>;
 
   constructor(private http: HttpClient) {
 
@@ -40,5 +40,5 @@ export class GameBackendService {
 }
 
 function getPublicIp(http: HttpClient) {
-  return http.get('http://169.254.169.254/latest/meta-data/public-ipv4', httpOptions);
+  return http.get<String>('http://169.254.169.254/latest/meta-data/public-ipv4', httpOptions);
 }
