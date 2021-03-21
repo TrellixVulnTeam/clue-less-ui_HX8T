@@ -20,11 +20,14 @@ export class GameBackendService {
   gameUrl: string;
   gameData$: Observable<Game>;
   refreshInterval = 5000; // every 5 seconds
-  backend_ip = "3.137.213.188";
+  backend_ip: Observable<String>;
 
   constructor(private http: HttpClient) {
 
-    this.gameUrl = `http://${this.backend_ip}/games/1/`; // TODO include game identifier
+    // this.backend_ip = http.get(`http://169.254.169.254/latest/meta-data/public-ipv4`, httpOptions);
+    this.backend_ip = getPublicIp(http);
+
+    this.gameUrl = `http://${this.backend_ip}:8080/games/1/`; // TODO include game identifier
 
     this.gameData$ = timer(1, this.refreshInterval).pipe( // will constanctly check the backend for updates to game data
       switchMap(() => http.get<Game>(this.gameUrl, httpOptions))
@@ -32,4 +35,8 @@ export class GameBackendService {
 
     // TODO: insert POST/PUT requests to backend here?
   }
+}
+
+function getPublicIp(http: HttpClient) {
+  return http.get<String>('http://169.254.169.254/latest/meta-data/public-ipv4', httpOptions);
 }
