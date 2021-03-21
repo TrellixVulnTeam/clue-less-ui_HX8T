@@ -25,10 +25,10 @@ export class GameBackendService {
 
   constructor(private http: HttpClient) {
 
-    this.backend_ip = http.get(`http://169.254.169.254/latest/meta-data/public-ipv4`);
+    this.backend_ip = http.get(`http://169.254.169.254/latest/meta-data/public-ipv4`, httpOptions);
 
     this.gameUrl = `${this.backend_ip}/1/`; // TODO include game identifier
-
+    
     this.gameData$ = timer(1, this.refreshInterval).pipe( // will constanctly check the backend for updates to game data
       switchMap(() => http.get<Game>(this.gameUrl, httpOptions))
     );
