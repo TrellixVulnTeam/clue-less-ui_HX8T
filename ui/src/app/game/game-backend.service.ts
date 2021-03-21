@@ -1,12 +1,11 @@
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 
-const frontend_url = `http://localhost:4200`
 const backend_url = `http://localhost:8080/games`;
 
 const httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*',
-    'Origin': frontend_url
+    'Origin': `http://localhost:4200`
   })
 };
 
