@@ -29,5 +29,6 @@ export class GameBackendService {
       switchMap(() => http.get<Game>(this.gameUrl, httpOptions))
     );
 
+    // TODO: insert POST/PUT requests to backend here?
   }
 }
