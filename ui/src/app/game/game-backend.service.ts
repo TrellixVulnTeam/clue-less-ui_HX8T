@@ -16,7 +16,7 @@ export class GameBackendService {
   refreshInterval = 5000; // every 5 seconds
 
   constructor(private http: HttpClient) {
-    const server_ip = __SERVER_IP__;
+    const server_ip = "__SERVER_IP__";
 
     this.gameUrl = `http://${server_ip}:8080/games/1/`; // TODO include game identifier
 
