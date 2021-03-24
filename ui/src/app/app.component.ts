@@ -10,7 +10,5 @@ import { Config } from 'protractor';
 export class AppComponent {
 
   constructor() { }
-
-  title = 'App'
   
 }
