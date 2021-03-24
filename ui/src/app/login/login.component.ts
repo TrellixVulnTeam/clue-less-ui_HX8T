@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router) {
   }
-
+  
   // action on join game
   createGameButtonClick=() => {
     // TODO: add player to game in backend
