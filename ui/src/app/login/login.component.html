@@ -15,24 +15,6 @@
     <button onclick="document.getElementById('id01').style.display='block'" style="width:auto; margin-left: 1%;">Join Game</button>
 </div>
 
-<div id="id02" class="modal">
-  <form class="modal-content animate" action="/action_page.php" method="post">
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
-
-    <div class="container">
-      <label for="uname"><b>Player Name</b></label>
-      <input type="text" placeholder="Enter Name" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button type="submit">Login</button>
-    </div>
-  </form>
-</div>
-
 <div id="id01" class="modal">
   <form class="modal-content animate" action="/action_page.php" method="post">
     <div class="imgcontainer">
@@ -43,22 +25,41 @@
       <label for="uname"><b>Player Name</b></label>
       <input type="text" placeholder="Enter Name" name="uname" required>
 
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <label for="gameId"><b>Game ID</b></label>
+      <input type="text" placeholder="Enter Game ID" name="gameId" required>
         
-      <button type="submit">Login</button>
+      <button type="submit">Join Game</button>
     </div>
   </form>
 </div>
 
+<div id="id02" class="modal">
+    <form class="modal-content animate" action="/action_page.php" method="post">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+      </div>
+  
+      <div class="container">
+        <label for="uname"><b>Player Name</b></label>
+        <input type="text" placeholder="Enter Name" name="uname" required>
+          
+        <button type="submit">Create Game</button>
+      </div>
+    </form>
+</div>
+
 <script>
+
 // Get the modal
-var modal = document.getElementById('id01');
+var modal1 = document.getElementById('id01');
+var modal2 = document.getElementById('id02');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == modal1) {
+        modal1.style.display = "none";
+    } else if (event.target == modal2) {
+        modal2.style.display = "none";
     }
 }
 </script>
