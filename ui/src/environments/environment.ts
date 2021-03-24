@@ -4,6 +4,6 @@
 
 export const environment = {
   production: false,
-  backend_ip: "__BACKEND_IP__"
+  backend_ip: "localhost"
 };
 
