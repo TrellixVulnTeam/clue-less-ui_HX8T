@@ -13,11 +13,13 @@ export class LoginComponent implements OnInit {
 
   // action on join game
   createGameButtonClick=() => {
+    // TODO: add player to game in backend
     this.router.navigateByUrl('/game');
   };
 
   // action on join game
   joinGameButtonClick=() => {
+    // TODO: create new game in backend
     this.router.navigateByUrl('/game');
   };
 
