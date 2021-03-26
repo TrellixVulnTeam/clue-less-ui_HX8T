@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import {Game} from '../game/game';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { HttpHeaders } from '@angular/common/http';
+import { PlayerService } from '../game/player.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 
@@ -20,27 +20,38 @@ const httpOptions = {
 })
 export class LoginComponent implements OnInit {
 
+  response: Observable<any> | undefined;
+
   backend_ip = environment.backend_ip;
   backendUrl = `http://${this.backend_ip}:8080/games`; // TODO include game identifier
 
-  constructor(private router: Router, private http: HttpClient) {
-  }
+  joinGameForm = this.formBuilder.group({
+    playerName: '',
+    gameId: ''
+  });
 
-  handleError(arg0: string, playerName: String): (err: any, caught: Observable<Game>) => import("rxjs").ObservableInput<any> {
-    throw new Error('Method not implemented.');
+  createGameForm = this.formBuilder.group({
+    playerName: ''
+  });
+
+  constructor(private router: Router, private playerService: PlayerService, private formBuilder: FormBuilder) {
   }
 
   // action on join game
   createGameButtonClick=() => {
-    // TODO: add player to game in backend
-    this.http.post(`${this.backendUrl}?name=MILES`, httpOptions)
-    this.router.navigateByUrl('/game');
+    // Create new game in backend
+    this.response = this.playerService.postToBackend(`?name=${this.joinGameForm.controls['playerName'].value}`);
+    
+    // this.router.navigateByUrl('/game');
   };
 
   // action on join game
   joinGameButtonClick=() => {
-    // TODO: create new game in backend
-    this.router.navigateByUrl('/game');
+    // Add player to game in backend
+    this.response = this.playerService.postToBackend(`/${this.joinGameForm.controls['gameId'].value}/players?name=${this.joinGameForm.controls['playerName'].value}`);
+    
+    // TODO: redirect to /game passing playerId from response
+    // this.router.navigateByUrl('/game');
   };
 
   ngOnInit(): void {

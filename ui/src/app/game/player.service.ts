@@ -16,22 +16,30 @@ import {Game} from './game';
 @Injectable({
   providedIn: 'root'
 })
-export class GameBackendService {
+export class PlayerService {
   
+  backend_ip = environment.backend_ip;
+  gamesEndpoint = `http://${this.backend_ip}:8080/games`;
+
   gameUrl: string;
+  gameId: number;
   gameData$: Observable<Game>;
   refreshInterval = 5000; // every 5 seconds
   
-  backend_ip = environment.backend_ip;
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) {
+    
 
-    this.gameUrl = `http://${this.backend_ip}:8080/games/1/`; // TODO include game identifier
+    this.gameId = 1; // TODO get from login component
+
+    this.gameUrl = `${this.gamesEndpoint}/${this.gameId}`;
 
     this.gameData$ = timer(1, this.refreshInterval).pipe( // will constanctly check the backend for updates to game data
-      switchMap(() => http.get<Game>(this.gameUrl, httpOptions))
+      switchMap(() => httpClient.get<Game>(this.gameUrl, httpOptions))
     );
-
-    // TODO: insert POST/PUT requests to backend here?
+  }
+  
+  public postToBackend(context: string): Observable<any> {
+    return this.httpClient.post<any>(`${this.gamesEndpoint}${context}`, {}, httpOptions);
   }
 }
