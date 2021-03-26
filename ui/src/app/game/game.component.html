@@ -1,10 +1,18 @@
-<h1>Game ID: {{ gameId }}</h1>
+<!-- Game Object provided is: <span>{{game }}</span> -->
+<h2>
+  <!-- <input #playerId type="text" [(ngModel)]="playerId" />
+  <input #gameId type="text" [(ngModel)]="gameId" />
+  <span *ngIf="true">
+    Your Player ID: {{ playerId }}<br>
+    Your Game ID: {{ gameId }}<br>
+  </span> -->
+</h2>
 <table>
   <tr>
     <th>Player Name</th>
     <th>Player ID</th>
   </tr>
-  <tr *ngFor="let player of players">
+  <tr *ngFor="let player of game.players">
     <td>{{ player.name }}</td>
     <td>{{ player.id }}</td>
   </tr>

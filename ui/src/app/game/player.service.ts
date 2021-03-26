@@ -23,8 +23,7 @@ import {Game} from './game';
   providedIn: 'root'
 })
 export class PlayerService {
-
-  playerId!: number;
+  
   gameData$: Observable<Game>;
   refreshInterval = 5000; // every 5 seconds
 
@@ -39,16 +38,6 @@ export class PlayerService {
   }
   
   public httpPostToBackend(context: string, payload?: {}, params?: any): Observable<any> {
-    
-    if (params != null) {
-      httpOptions.params = params;
-    }
-
-    // return this.httpClient.post(`${gamesEndpoint}${context}`, {}, httpOptions);
-    return this.httpClient.post(
-          `${gamesEndpoint}${context}`, 
-          payload, 
-          httpOptions
-      )
+    return this.httpClient.post(`${gamesEndpoint}${context}`, payload, httpOptions)
   }
 }
