@@ -4,6 +4,6 @@
 
 export const environment = {
   production: false,
-  backend_ip: "localhost"
+  backend_ip: "localhost",
+  backend_port: 8080
 };
-

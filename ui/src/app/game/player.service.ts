@@ -1,10 +1,16 @@
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-const httpOptions = {
+// Set endpoint constants
+const backend_ip = environment.backend_ip;
+const backend_port = environment.backend_port;
+const gamesEndpoint = `http://${backend_ip}:${backend_port}/games`;
+
+let httpOptions = {
   headers: new HttpHeaders({ 
     'Access-Control-Allow-Origin':'*'
-  })
+  }),
+  params: new HttpParams({})
 };
 
 import { Injectable } from '@angular/core';
@@ -17,29 +23,32 @@ import {Game} from './game';
   providedIn: 'root'
 })
 export class PlayerService {
-  
-  backend_ip = environment.backend_ip;
-  gamesEndpoint = `http://${this.backend_ip}:8080/games`;
 
-  gameUrl: string;
-  gameId: number;
+  playerId!: number;
   gameData$: Observable<Game>;
   refreshInterval = 5000; // every 5 seconds
-  
 
   constructor(private httpClient: HttpClient) {
     
+    let gameId = 1; // TODO get from login component
 
-    this.gameId = 1; // TODO get from login component
-
-    this.gameUrl = `${this.gamesEndpoint}/${this.gameId}`;
-
-    this.gameData$ = timer(1, this.refreshInterval).pipe( // will constanctly check the backend for updates to game data
-      switchMap(() => httpClient.get<Game>(this.gameUrl, httpOptions))
+    // POLLING GAME DATA EVERY 5 SECONDS
+    this.gameData$ = timer(1, this.refreshInterval).pipe( 
+      switchMap(() => httpClient.get<Game>(`${gamesEndpoint}/${gameId}`, httpOptions))
     );
   }
   
-  public postToBackend(context: string): Observable<any> {
-    return this.httpClient.post<any>(`${this.gamesEndpoint}${context}`, {}, httpOptions);
+  public httpPostToBackend(context: string, payload?: {}, params?: any): Observable<any> {
+    
+    if (params != null) {
+      httpOptions.params = params;
+    }
+
+    // return this.httpClient.post(`${gamesEndpoint}${context}`, {}, httpOptions);
+    return this.httpClient.post(
+          `${gamesEndpoint}${context}`, 
+          payload, 
+          httpOptions
+      )
   }
 }

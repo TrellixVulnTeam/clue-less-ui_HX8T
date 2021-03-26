@@ -18,7 +18,7 @@ Response is: <span>{{response | async | json}}</span>
 </div>
 
 <div id="id01" class="modal">
-  <form class="modal-content animate" [formGroup]="joinGameForm" (ngSubmit)="joinGameButtonClick()">
+  <form class="modal-content animate" [formGroup]="loginForm" (ngSubmit)="joinGameButtonClick()" action="post">
     <div class="imgcontainer">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
@@ -42,11 +42,11 @@ Response is: <span>{{response | async | json}}</span>
 </div>
 
 <div id="id02" class="modal">
-    <form class="modal-content animate" [formGroup]="createGameForm" (ngSubmit)="createGameButtonClick()">
+    <form class="modal-content animate" [formGroup]="loginForm" (ngSubmit)="createGameButtonClick()" action="post">
         <div class="imgcontainer">
             <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
         </div>
-    
+        
         <div class="container">
           <label for="playerName">
             <b>Player Name</b>
