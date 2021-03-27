@@ -21,20 +21,14 @@ export class GameComponent implements OnInit {
 
   ngOnInit() {
 
-    // this.route.paramMap.pipe(
-    //   switchMap(params => {
-    //     this.playerId = Number(params.get('playerId'));
-    //   })
-    // );
+    this.gameId = this.route.snapshot.paramMap.get('gameId');
+    this.playerId = this.route.snapshot.paramMap.get('playerId');
 
-    this.route.queryParams.subscribe(params => {
-      this.playerId = params.get('playerId');
-      this.gameId = params.get('gameId')
-    });
+    this.playerService.setPlayerService(this.gameId, this.playerId);
 
     this.playerService.gameData$
-      .subscribe((data: Game) => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)
-          this.game = data;
-      });
+    .subscribe((data: Game) => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)
+        this.game = data;
+    });
   }
 }

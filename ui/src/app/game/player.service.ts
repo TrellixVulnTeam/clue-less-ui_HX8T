@@ -24,20 +24,28 @@ import {Game} from './game';
 })
 export class PlayerService {
   
+  gameId: any;
+  playerId: any;
   gameData$: Observable<Game>;
   refreshInterval = 5000; // every 5 seconds
 
   constructor(private httpClient: HttpClient) {
     
-    let gameId = 1; // TODO get from login component
+    this.gameId = 1; // TODO get from login component
+    this.playerId = 1; // TODO get from login component
 
     // POLLING GAME DATA EVERY 5 SECONDS
     this.gameData$ = timer(1, this.refreshInterval).pipe( 
-      switchMap(() => httpClient.get<Game>(`${gamesEndpoint}/${gameId}`, httpOptions))
+      switchMap(() => httpClient.get<Game>(`${gamesEndpoint}/${this.gameId}`, httpOptions))
     );
   }
   
   public httpPostToBackend(context: string, payload?: {}, params?: any): Observable<any> {
     return this.httpClient.post(`${gamesEndpoint}${context}`, payload, httpOptions)
+  }
+
+  public setPlayerService(gameId: any, playerId: any): void {
+    this.gameId = gameId;
+    this.playerId = playerId;
   }
 }

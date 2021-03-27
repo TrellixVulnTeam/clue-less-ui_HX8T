@@ -13,8 +13,6 @@ import { switchMap } from 'rxjs/operators';
 })
 export class LoginComponent implements OnInit {
 
-  game: Observable<any> | undefined;
-
   loginForm = this.formBuilder.group({
     playerName: '',
     gameId: ''
@@ -27,7 +25,13 @@ export class LoginComponent implements OnInit {
     // Create new game in backend
     this.playerService.httpPostToBackend(`?name=${this.loginForm.controls['playerName'].value}`).subscribe(
       data => {
-        this.router.navigate([`/game`, {'playerId': `${data.players[0].id}`, 'gameId': `${data.gameId}`}]);
+        data.players.forEach((element: any) => {
+          // Determine Player ID by filtering on Player Name
+          if (element.name == this.loginForm.controls['playerName'].value) {
+            // this.router.navigate([`/game`, {'playerId': `${element.id}`, 'gameId': `${data.gameId}`}]);
+            this.router.navigate([`/game/${data.gameId}/${element.id}`]);
+          }
+        });
       },
       error => {
         console.log("ERROR:", error);
@@ -42,7 +46,13 @@ export class LoginComponent implements OnInit {
     // Add player to game in backend
     this.playerService.httpPostToBackend(`/${this.loginForm.controls['gameId'].value}/players?name=${this.loginForm.controls['playerName'].value}`).subscribe(
       data => {
-        this.router.navigate([`/game`, {'playerId': `${data.players[0].id}`, 'gameId': `${data.gameId}`}]);
+        data.players.forEach((element: any) => {
+          // Determine Player ID by filtering on Player Name
+          if (element.name == this.loginForm.controls['playerName'].value) {
+            // this.router.navigate([`/game`, {'playerId': `${element.id}`, 'gameId': `${data.gameId}`}]);
+            this.router.navigate([`/game/${data.gameId}/${element.id}`]);
+          }
+        });
       },
       error => {
         console.log("ERROR:", error);

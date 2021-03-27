@@ -5,7 +5,7 @@ import { GameComponent } from './game/game.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'game', component: GameComponent, data: {} },
+  { path: 'game/:gameId/:playerId', component: GameComponent },
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: '**',   redirectTo: '/login', pathMatch: 'full' },
 ];
