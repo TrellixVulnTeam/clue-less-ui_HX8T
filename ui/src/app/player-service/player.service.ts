@@ -15,9 +15,8 @@ let httpOptions = {
 
 import { Injectable } from '@angular/core';
 import { timer } from 'rxjs';
-import { BehaviorSubject, Observable, Subject, throwError } from 'rxjs';
-import { catchError, retry, switchMap } from 'rxjs/operators';
-import {Game} from './game';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +25,7 @@ export class PlayerService {
   
   gameId: any;
   playerId: any;
-  gameData$: Observable<Game>;
+  gameData$: Observable<any>;
   refreshInterval = 5000; // every 5 seconds
 
   constructor(private httpClient: HttpClient) {
@@ -36,7 +35,7 @@ export class PlayerService {
 
     // POLLING GAME DATA EVERY 5 SECONDS
     this.gameData$ = timer(1, this.refreshInterval).pipe( 
-      switchMap(() => httpClient.get<Game>(`${gamesEndpoint}/${this.gameId}`, httpOptions))
+      switchMap(() => httpClient.get<any>(`${gamesEndpoint}/${this.gameId}`, httpOptions))
     );
   }
   

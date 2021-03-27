@@ -1,0 +1,17 @@
+<!-- Game Object provided is: <span>{{ game }}</span> -->
+<h2>
+    <span>
+      Your Player ID: {{ playerId }}<br>
+      Your Game ID: {{ gameId }}<br>
+    </span>
+  </h2>
+  <table>
+    <tr>
+      <th>Player Name</th>
+      <th>Player ID</th>
+    </tr>
+    <tr *ngFor="let player of game.players">
+      <td>{{ player.name }}</td>
+      <td>{{ player.id }}</td>
+    </tr>
+  </table>

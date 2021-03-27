@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { PlayerService } from '../game/player.service';
+import { PlayerService } from '../player-service/player.service';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
           // Determine Player ID by filtering on Player Name
           if (element.name == this.loginForm.controls['playerName'].value) {
             // this.router.navigate([`/game`, {'playerId': `${element.id}`, 'gameId': `${data.gameId}`}]);
-            this.router.navigate([`/game/${data.gameId}/${element.id}`]);
+            this.router.navigate([`/wait-room/${data.gameId}/${element.id}`]);
           }
         });
       },
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
           // Determine Player ID by filtering on Player Name
           if (element.name == this.loginForm.controls['playerName'].value) {
             // this.router.navigate([`/game`, {'playerId': `${element.id}`, 'gameId': `${data.gameId}`}]);
-            this.router.navigate([`/game/${data.gameId}/${element.id}`]);
+            this.router.navigate([`/wait-room/${data.gameId}/${element.id}`]);
           }
         });
       },

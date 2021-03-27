@@ -4,11 +4,11 @@ import { PlayerService } from '../player-service/player.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  selector: 'wait-room',
+  templateUrl: './wait-room.component.html',
+  styleUrls: ['./wait-room.component.css']
 })
-export class GameComponent implements OnInit {
+export class WaitRoomComponent implements OnInit {
   
   playerId: any | undefined;
   gameId: any | undefined;
