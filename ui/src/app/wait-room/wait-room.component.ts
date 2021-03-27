@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Game } from '../player-service/game';
 import { PlayerService } from '../player-service/player.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'wait-room',
@@ -14,7 +14,7 @@ export class WaitRoomComponent implements OnInit {
   gameId: any | undefined;
   game: any | undefined;
 
-  constructor(private route: ActivatedRoute, private playerService: PlayerService) {} 
+  constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {} 
 
   ngOnInit() {
 
@@ -27,8 +27,8 @@ export class WaitRoomComponent implements OnInit {
     .subscribe((data: Game) => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)
         this.game = data;
 
-        if (data.hasStarted) {
-          // TODO: redirect to Game component
+        if (data.hasStarted) { // redirect to Game component if game has started
+          this.router.navigate([`/game/${this.gameId}/${this.playerId}`]);
         }
     });
   }

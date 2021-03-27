@@ -26,10 +26,7 @@ export class GameComponent implements OnInit {
     this.playerService.gameData$
     .subscribe((data: Game) => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)
         this.game = data;
-
-        if (data.hasStarted) {
-          // TODO: redirect to Game component
-        }
+        
     });
   }
 }
