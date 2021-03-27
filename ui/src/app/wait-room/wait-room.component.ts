@@ -17,7 +17,7 @@ export class WaitRoomComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {} 
 
   ngOnInit() {
-
+    
     this.gameId = this.route.snapshot.paramMap.get('gameId');
     this.playerId = this.route.snapshot.paramMap.get('playerId');
 
