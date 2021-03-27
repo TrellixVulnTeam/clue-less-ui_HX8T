@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { PlayerService } from '../game/player.service';
-import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',

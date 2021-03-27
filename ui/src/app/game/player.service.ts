@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpClientModule, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 // Set endpoint constants
