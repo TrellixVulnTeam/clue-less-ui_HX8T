@@ -127,3 +127,13 @@ h2.title {
     font-family: 'Vollkorn', serif;
     font-size: 50px;
 }
+
+/* div form div img {
+  width: auto;
+  height: 330px
+} */
+
+#select_char {
+  width: auto;
+  height: 260px
+}
