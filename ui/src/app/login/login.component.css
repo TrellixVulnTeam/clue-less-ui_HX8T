@@ -73,7 +73,7 @@ span.psw {
   background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 90%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
@@ -128,12 +128,70 @@ h2.title {
     font-size: 50px;
 }
 
-/* div form div img {
-  width: auto;
-  height: 330px
-} */
+#gameFormContainer {
+  margin-right: 2%;
+  margin-left: 2%;
+}
 
-#select_char {
-  width: auto;
-  height: 260px
+#selectCharacter{
+  height: 300px;
+  border: none;
+  overflow: hidden;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+#selectCharacter::-moz-focus-inner {
+  border: 0;
+}
+#selectCharacter:focus {
+  outline: none;
+}
+#selectCharacter option{
+  height: 260px;
+  width: 170px;
+  font-size: 1.2em;
+  text-align: center;
+  margin: 10px;
+  display: inline-block;
+  cursor: pointer;
+  border:rgb(67, 102, 53) solid 1px;
+  border-radius: 5px;
+  color: rgb(204, 204, 0);
+}
+
+select#selectCharacter option[value="col_mustard"]   { 
+  background-image:url("../../assets/images/login/character_selection/col. mustard.jpg");
+  background-repeat: no-repeat;
+  background-size: 90% 90%;
+  background-position: center;
+}
+select#selectCharacter option[value="miss_scarlet"] { 
+  background-image:url("../../assets/images/login/character_selection/miss scarlet.jpg");
+  background-repeat: no-repeat;
+  background-size: 90% 90%;
+  background-position: center;
+}
+select#selectCharacter option[value="mr_green"] { 
+  background-image:url("../../assets/images/login/character_selection/mr. green.jpg");
+  background-repeat: no-repeat;
+  background-size: 90% 90%;
+  background-position: center;
+}
+select#selectCharacter option[value="mrs_peacock"]   { 
+  background-image:url("../../assets/images/login/character_selection/mrs. peacock.jpg");
+  background-repeat: no-repeat;
+  background-size: 90% 90%;
+  background-position: center;
+}
+select#selectCharacter option[value="mrs_white"] { 
+  background-image:url("../../assets/images/login/character_selection/mrs. white.jpg");
+  background-repeat: no-repeat;
+  background-size: 90% 90%;
+  background-position: center;
+}
+select#selectCharacter option[value="prof_plum"] { 
+  background-image:url("../../assets/images/login/character_selection/prof. plum.jpg");
+  background-repeat: no-repeat;
+  background-size: 90% 90%;
+  background-position: center;
 }
