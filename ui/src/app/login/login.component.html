@@ -1,60 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital@1&display=swap" rel="stylesheet">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Vollkorn:ital@1&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 
-<div class="text-center">
+  <div class="text-center">
     <h2 class="title">Welcome to Clue-less</h2>
     <img src="assets/images/login/cluedo_login.jpeg">
     <h3>Please Login to Create/Join a Game</h3>
-    <button onclick="document.getElementById('id02').style.display='block'" style="width:auto; margin-right: 1%;">Create New Game</button>
-    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto; margin-left: 1%;">Join Game</button>
-</div>
+    <button onclick="document.getElementById('id02').style.display='block'" style="width:auto; margin-right: 1%;">Create
+      New Game</button>
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto; margin-left: 1%;">Join
+      Game</button>
+  </div>
 
-<div id="id01" class="modal">
-  <form class="modal-content animate" [formGroup]="loginForm" (ngSubmit)="joinGameButtonClick()" action="post">
-    <div class="imgcontainer">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-    </div>
+  <div id="id01" class="modal">
+    <form class="modal-content animate" [formGroup]="loginForm" (ngSubmit)="joinGameButtonClick()" action="post">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
 
-    <select name="select_character" id="selectCharacter" multiple>
-      <option value="col_mustard"></option>
-      <option value="miss_scarlet"></option>
-      <option value="mr_green"></option>
-      <option value="mrs_peacock"></option>
-      <option value="mrs_white"></option>
-      <option value="prof_plum"></option>
-    </select>
-
-    <div class="container" id="gameFormContainer">
-      <label for="playerName">
-        <b>Player Name</b>
-      </label>
-      <input id="playerName" type="text" placeholder="Enter Name" formControlName="playerName">
-    </div>
-  
-    <div class="container" id="gameFormContainer">
-      <label for="gameId">
-        <b>Game ID</b>
-      </label>
-      <input id="gameId" type="text" placeholder="Game ID" formControlName="gameId">
-    </div>
-  
-    <button class="button" type="submit">Join Game</button>
-  </form>
-</div>
-
-<div id="id02" class="modal">
-    <form class="modal-content animate" [formGroup]="loginForm" (ngSubmit)="createGameButtonClick()" action="post">
-        <div class="imgcontainer">
-            <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-        </div>
-
+      <div class="container" id="promptEnterGameContainer">
         <select name="select_character" id="selectCharacter" multiple>
           <option value="col_mustard"></option>
           <option value="miss_scarlet"></option>
@@ -63,33 +35,71 @@
           <option value="mrs_white"></option>
           <option value="prof_plum"></option>
         </select>
-        
-        <div class="container" id="gameFormContainer">
+
+        <div>
           <label for="playerName">
             <b>Player Name</b>
           </label>
           <input id="playerName" type="text" placeholder="Enter Name" formControlName="playerName">
         </div>
-        
-        <button class="button" type="submit">Create Game</button>
+
+        <div>
+          <label for="gameId">
+            <b>Game ID</b>
+          </label>
+          <input id="gameId" type="text" placeholder="Game ID" formControlName="gameId">
+        </div>
+
+        <button class="button" type="submit">Join Game</button>
+      </div>
     </form>
-</div>
+  </div>
 
-<script>
+  <div id="id02" class="modal">
+    <form class="modal-content animate" [formGroup]="loginForm" (ngSubmit)="createGameButtonClick()" action="post">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id02').style.display='none'" class="close"
+          title="Close Modal">&times;</span>
+      </div>
 
-// Get the modal
-var modal1 = document.getElementById('id01');
-var modal2 = document.getElementById('id02');
+      <div class="container" id="promptEnterGameContainer">
+        <select name="select_character" id="selectCharacter" multiple>
+          <option value="col_mustard"></option>
+          <option value="miss_scarlet"></option>
+          <option value="mr_green"></option>
+          <option value="mrs_peacock"></option>
+          <option value="mrs_white"></option>
+          <option value="prof_plum"></option>
+        </select>
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal1) {
+        <div class="container">
+          <label for="playerName">
+            <b>Player Name</b>
+          </label>
+          <input id="playerName" type="text" placeholder="Enter Name" formControlName="playerName">
+        </div>
+
+        <button class="button" type="submit">Create Game</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+
+    // Get the modal
+    var modal1 = document.getElementById('id01');
+    var modal2 = document.getElementById('id02');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal1) {
         modal1.style.display = "none";
-    } else if (event.target == modal2) {
+      } else if (event.target == modal2) {
         modal2.style.display = "none";
+      }
     }
-}
-</script>
+  </script>
 
 </body>
+
 </html>
