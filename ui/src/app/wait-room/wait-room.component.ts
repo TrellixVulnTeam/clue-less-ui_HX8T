@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class WaitRoomComponent implements OnInit {
   
-  playerId: any | undefined;
+  charName: any | undefined;
   gameId: any | undefined;
   game: any | undefined;
 
@@ -19,16 +19,16 @@ export class WaitRoomComponent implements OnInit {
   ngOnInit() {
     
     this.gameId = this.route.snapshot.paramMap.get('gameId');
-    this.playerId = this.route.snapshot.paramMap.get('playerId');
+    this.charName = this.route.snapshot.paramMap.get('charName');
 
-    this.playerService.setPlayerService(this.gameId, this.playerId);
+    this.playerService.setPlayerService(this.gameId, this.charName);
 
     this.playerService.gameData$
     .subscribe((data: Game) => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)
         this.game = data;
 
         if (data.hasStarted) { // redirect to Game component if game has started
-          this.router.navigate([`/game/${this.gameId}/${this.playerId}`]);
+          this.router.navigate([`/game/${this.gameId}/${this.charName}`]);
         }
     });
   }

@@ -8,6 +8,8 @@ import { GameComponent } from './game/game.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WaitRoomComponent } from './wait-room/wait-room.component';
+import {MatRadioModule} from '@angular/material/radio';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,13 @@ import { WaitRoomComponent } from './wait-room/wait-room.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatRadioModule,
+    MatInputModule
   ],
   providers: [
-    PlayerService
+    PlayerService,
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })

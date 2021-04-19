@@ -27,27 +27,51 @@
       </div>
 
       <div class="container" id="promptEnterGameContainer">
-        <select name="select_character" id="selectCharacter" multiple>
-          <option value="col_mustard"></option>
-          <option value="miss_scarlet"></option>
-          <option value="mr_green"></option>
-          <option value="mrs_peacock"></option>
-          <option value="mrs_white"></option>
-          <option value="prof_plum"></option>
-        </select>
+        <mat-radio-group formControlName="charSelected">
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_col_mustard}}>
+              <img src="assets/images/login/character_selection/col. mustard.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_miss_scarlet}}>
+              <img src="assets/images/login/character_selection/miss scarlet.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_mrs_peacock}}>
+              <img src="assets/images/login/character_selection/mrs. peacock.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_mrs_white}}>
+              <img src="assets/images/login/character_selection/mrs. white.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_mr_green}}>
+              <img src="assets/images/login/character_selection/mr. green.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_prof_plum}}>
+              <img src="assets/images/login/character_selection/prof. plum.jpg">
+            </mat-radio-button>
+          </mat-label>
+        </mat-radio-group>
 
         <div>
           <label for="playerName">
             <b>Player Name</b>
           </label>
-          <input id="playerName" type="text" placeholder="Enter Name" formControlName="playerName">
+          <input type="text" placeholder="Enter Name" formControlName="playerName">
         </div>
 
         <div>
           <label for="gameId">
             <b>Game ID</b>
           </label>
-          <input id="gameId" type="text" placeholder="Game ID" formControlName="gameId">
+          <input type="text" placeholder="Game ID" formControlName="gameId">
         </div>
 
         <button class="button" type="submit">Join Game</button>
@@ -63,20 +87,44 @@
       </div>
 
       <div class="container" id="promptEnterGameContainer">
-        <select name="select_character" id="selectCharacter" multiple>
-          <option value="col_mustard"></option>
-          <option value="miss_scarlet"></option>
-          <option value="mr_green"></option>
-          <option value="mrs_peacock"></option>
-          <option value="mrs_white"></option>
-          <option value="prof_plum"></option>
-        </select>
+        <mat-radio-group formControlName="charSelected" id="selectChar">
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_col_mustard}}>
+              <img src="assets/images/login/character_selection/col. mustard.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_miss_scarlet}}>
+              <img src="assets/images/login/character_selection/miss scarlet.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_mrs_peacock}}>
+              <img src="assets/images/login/character_selection/mrs. peacock.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_mrs_white}}>
+              <img src="assets/images/login/character_selection/mrs. white.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_mr_green}}>
+              <img src="assets/images/login/character_selection/mr. green.jpg">
+            </mat-radio-button>
+          </mat-label>
+          <mat-label>
+            <mat-radio-button class="female-radio" value={{char_name_prof_plum}}>
+              <img src="assets/images/login/character_selection/prof. plum.jpg">
+            </mat-radio-button>
+          </mat-label>
+        </mat-radio-group>
 
         <div class="container">
           <label for="playerName">
             <b>Player Name</b>
           </label>
-          <input id="playerName" type="text" placeholder="Enter Name" formControlName="playerName">
+          <input type="text" placeholder="Enter Name" formControlName="playerName">
         </div>
 
         <button class="button" type="submit">Create Game</button>

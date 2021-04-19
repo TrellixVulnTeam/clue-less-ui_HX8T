@@ -24,14 +24,14 @@ import { switchMap } from 'rxjs/operators';
 export class PlayerService {
   
   gameId: any;
-  playerId: any;
+  charName: any;
   gameData$: Observable<any>;
   refreshInterval = 5000; // every 5 seconds
 
   constructor(private httpClient: HttpClient) {
     
     this.gameId = 1; // TODO get from login component
-    this.playerId = 1; // TODO get from login component
+    this.charName = 'mr. green'; // TODO get from login component
 
     // POLLING GAME DATA EVERY 5 SECONDS
     this.gameData$ = timer(1, this.refreshInterval).pipe( 
@@ -43,8 +43,8 @@ export class PlayerService {
     return this.httpClient.post(`${gamesEndpoint}${context}`, payload, httpOptions)
   }
 
-  public setPlayerService(gameId: any, playerId: any): void {
+  public setPlayerService(gameId: any, charName: any): void {
     this.gameId = gameId;
-    this.playerId = playerId;
+    this.charName = charName;
   }
 }
