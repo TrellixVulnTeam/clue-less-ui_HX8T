@@ -27,7 +27,7 @@ export class WaitRoomComponent implements OnInit {
     .subscribe((data: Game) => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)
         this.game = data;
 
-        if (data.hasStarted) { // redirect to Game component if game has started
+        if (data.active) { // redirect to Game component if game has started
           this.router.navigate([`/game/${this.gameId}/${this.charName}`]);
         }
     });

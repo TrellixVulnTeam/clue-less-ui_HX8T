@@ -4,11 +4,11 @@ export class Game {
         
     gameId!: number;
     players!: Player[];
-    hasStarted!: boolean;
+    active!: boolean;
 
     constructor(public newGame: Game) {
         this.gameId = newGame.gameId;
         this.players = newGame.players;
-        this.hasStarted = newGame.hasStarted;
+        this.active = newGame.active;
     }
 }
