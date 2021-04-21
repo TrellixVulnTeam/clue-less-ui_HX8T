@@ -1,18 +1,14 @@
 <h2>
-    Game Event: {{ game.eventMessage }}<br>
-    Your Character: {{ charName }}<br>
-    Your Player Data: {{ playerData }}
+    Game Event: {{ eventMessage }}<br>
+    Suggestion Cards: {{ suggestion }}<br>
+    Game Active: {{ active }}
 </h2>
 
 <p>
-    <span>
-        Character Map: {{ game.characterMap | json }}<br>
-    </span>
+    Your Character Name: {{ charName }}<br>
+    Your Player Data: {{ player | json }}
 </p>
 
-
-<ul>
-    <li *ngFor="let character of game.characterMap | keyvalue">
-        {{character.key}} --> {{character.value | json}}
-    </li>
-</ul>
+<p>
+    All Characters Data: {{ characters | json }}
+</p>
