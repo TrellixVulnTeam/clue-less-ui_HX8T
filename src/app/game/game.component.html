@@ -12,12 +12,12 @@
     All Characters Data: {{ characters | json }}
 </p>
 
-<section>
+<div class="game-map">
     <div class="location-buttons">
-        <div *ngFor="let loc of buttons.locations">
-            <button mat-raised-button disabled="{{ loc.disabled }}">
-                {{ loc.name }}
+        <div *ngFor="let loc of locationButtons">
+            <button mat-raised-button class="pull-right" disabled="{{ loc.disabled }}">
+                {{ loc.label }}
             </button>
         </div>
     </div>
-</section>
+</div>

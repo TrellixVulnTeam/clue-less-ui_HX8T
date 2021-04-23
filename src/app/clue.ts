@@ -1,9 +1,10 @@
 import {LocationButton} from './location-button'
 import { environment } from '../environments/environment';
+import { ClueGameButton } from './clue-game-button';
 
 export class Clue {
 
-    LOCATION_ARRAY:LocationButton[] = [
+    locationButtons:LocationButton[] = [
         new LocationButton(environment.LOCATION_NAME_BALL_ROOM, environment.LOCATION_TYPE_ROOM, 4, 2 ),
         new LocationButton(environment.LOCATION_NAME_BILLIARD_ROOM, environment.LOCATION_TYPE_ROOM, 4, 4 ),
         new LocationButton(environment.LOCATION_NAME_CONSERVATORY, environment.LOCATION_TYPE_ROOM, 2, 2 ),
@@ -36,18 +37,8 @@ export class Clue {
         new LocationButton(environment.LOCATION_NAME_HALLWAY_36, environment.LOCATION_TYPE_HALLWAY, 3, 6 ),
         new LocationButton(environment.LOCATION_NAME_HALLWAY_56, environment.LOCATION_TYPE_HALLWAY, 5, 6 )
     ];
-    
-    LOCATION_MAP = this.initLocationMap();
 
-    initLocationMap() {
-        var location_map:any = {};
-        var location_name:any;
+    suggestButton = new ClueGameButton('suggest');
+    accuseButton = new ClueGameButton('accuse');
     
-        for (var loc of this.LOCATION_ARRAY) {
-            location_name = loc.name;
-            location_map.location_name = loc;
-        }
-    
-        return location_map;
-    }
 }

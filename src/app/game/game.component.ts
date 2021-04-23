@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../player-service/player.service';
 import { ActivatedRoute } from '@angular/router';
 import { Clue } from '../clue';
+import { LocationButton } from '../location-button';
 
 @Component({
   selector: 'game',
@@ -22,9 +23,6 @@ export class GameComponent extends Clue implements OnInit {
   playerName: string | undefined;
   charName: any | undefined;
 
-  // buttons
-  buttons: any | undefined;
-
   constructor(private route: ActivatedRoute, private playerService: PlayerService) {
     super();
     this.gameId = route.snapshot.paramMap.get('gameId');
@@ -32,15 +30,11 @@ export class GameComponent extends Clue implements OnInit {
   }
 
   ngOnInit() {
-    
+
+    // set re-used variables
+    var isPossibleMove:boolean;
+
     this.playerService.setPlayerService(this.gameId, this.playerName);
-    
-    // TODO: establish buttons for UI
-    this.buttons = {
-      locations: this.LOCATION_ARRAY,
-      suggest: '',
-      accuse: ''
-    }
 
     this.playerService.gameData$
       .subscribe(data => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)
@@ -53,6 +47,24 @@ export class GameComponent extends Clue implements OnInit {
           if (character.characterName == this.charName) {
             this.player = character;
             this.charName = this.player.characterName;
+
+            // check to see if each location is in user's possibleMoves and set to enabled if so
+            for (let locButton of this.locationButtons) {
+              isPossibleMove = false;
+              character.possibleMoves.forEach((location: any) => {
+                if (locButton.label == location.name) {
+                  isPossibleMove = true;
+                }
+              });
+
+              if (isPossibleMove) {
+                console.log(`${locButton.label} button is attempting to get enabled`)
+                locButton.enable()
+              } else {
+                console.log(`${locButton.label} button is being disabled`)
+                locButton.disable()
+              }
+            }
           }
         })
 
