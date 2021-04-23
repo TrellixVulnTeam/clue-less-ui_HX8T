@@ -1,6 +1,5 @@
 <h2>
     Game Event: {{ eventMessage }}<br>
-    Suggestion Cards: {{ suggestion }}<br>
 </h2>
 
 <p>
@@ -8,16 +7,23 @@
     Your Player Data: {{ player | json }}
 </p>
 
-<p>
+<!-- <p>
     All Characters Data: {{ characters | json }}
-</p>
+</p> -->
 
 <div class="game-map">
-    <div class="location-buttons">
-        <div *ngFor="let loc of locationButtons">
-            <button mat-raised-button class="pull-right" disabled="{{ loc.disabled }}">
-                {{ loc.label }}
-            </button>
-        </div>
-    </div>
+    <mat-grid-list cols="7" rowHeight="1.5:1" gutterSize="5px">
+        <ng-container *ngFor="let loc of locationButtons">
+            <div *ngIf='loc.label === "empty";else location_button_content'>
+                <mat-grid-tile class="empty-buttons">
+                    <button mat-raised-button disabled="true"></button>
+                </mat-grid-tile>
+            </div>
+            <ng-template #location_button_content>
+                <mat-grid-tile class="location-buttons">
+                    <button mat-raised-button disabled="{{ loc.disabled }}">{{ loc.label }}</button>
+                </mat-grid-tile>
+            </ng-template>
+        </ng-container>
+    </mat-grid-list>
 </div>

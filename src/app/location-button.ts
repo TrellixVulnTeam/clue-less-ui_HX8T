@@ -2,12 +2,12 @@ import { ClueGameButton } from "./clue-game-button";
 
 export class LocationButton extends ClueGameButton{
 
-    type:string | undefined;
-    x:number | undefined;
-    y:number | undefined;
-    img_path:string | undefined;
+    type:string;
+    x:number;
+    y:number;
+    img_path:string;
 
-    constructor(label:string = '', type:string = '', x:number = 0, y:number = 0, img_path:string = '/') {
+    constructor(label:string = 'empty', type:string = '', x:number = 0, y:number = 0, img_path:string = '/') {
         super(label);
         this.type = type;
         this.x = x;

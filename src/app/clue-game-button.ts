@@ -1,8 +1,8 @@
 export class ClueGameButton {
 
     // always start disabled
-    label:string | undefined;
-    disabled:boolean | undefined
+    label:string;
+    disabled:boolean ;
 
     constructor(label:string) {
         this.label = label;
