@@ -1,0 +1,19 @@
+/* TOOD: update this div to be take up most portion of screen and position  */
+.game-map {
+    width: 90%;
+    height: 90%;
+    /* text-align: center; */
+}
+
+.location-buttons button {
+    font-size: 100%;
+    width: 100%;
+    height: 100%;
+    white-space: normal;
+    color: #000000;
+    background-color: #74c48cd5;
+}
+
+.location-buttons button:disabled {
+    background-color: #e0bfb988;
+}

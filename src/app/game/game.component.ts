@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-// import { Game } from '../player-service/game';
 import { PlayerService } from '../player-service/player.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { Clue } from '../clue';
+import { LocationButton } from '../location-button';
 
 @Component({
   selector: 'game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit {
+export class GameComponent extends Clue implements OnInit {
 
   // game data
   gameId: any | undefined;
@@ -24,12 +24,16 @@ export class GameComponent implements OnInit {
   charName: any | undefined;
 
   constructor(private route: ActivatedRoute, private playerService: PlayerService) {
+    super();
     this.gameId = route.snapshot.paramMap.get('gameId');
     this.charName = route.snapshot.paramMap.get('charName');
   }
 
   ngOnInit() {
-    
+
+    // set re-used variables
+    var isPossibleMove:boolean;
+
     this.playerService.setPlayerService(this.gameId, this.playerName);
 
     this.playerService.gameData$
@@ -43,6 +47,24 @@ export class GameComponent implements OnInit {
           if (character.characterName == this.charName) {
             this.player = character;
             this.charName = this.player.characterName;
+
+            // check to see if each location is in user's possibleMoves and set to enabled if so
+            for (let locButton of this.locationButtons) {
+              isPossibleMove = false;
+              character.possibleMoves.forEach((location: any) => {
+                if (locButton.label == location.name) {
+                  isPossibleMove = true;
+                }
+              });
+
+              if (isPossibleMove) {
+                console.log(`${locButton.label} button is attempting to get enabled`)
+                locButton.enable()
+              } else {
+                console.log(`${locButton.label} button is being disabled`)
+                locButton.disable()
+              }
+            }
           }
         })
 
