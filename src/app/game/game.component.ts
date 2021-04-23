@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-// import { Game } from '../player-service/game';
 import { PlayerService } from '../player-service/player.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { Clue } from '../clue';
 
 @Component({
   selector: 'game',
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.css']
 })
-export class GameComponent implements OnInit {
+export class GameComponent extends Clue implements OnInit {
 
   // game data
   gameId: any | undefined;
@@ -23,7 +22,11 @@ export class GameComponent implements OnInit {
   playerName: string | undefined;
   charName: any | undefined;
 
+  // buttons
+  buttons: any | undefined;
+
   constructor(private route: ActivatedRoute, private playerService: PlayerService) {
+    super();
     this.gameId = route.snapshot.paramMap.get('gameId');
     this.charName = route.snapshot.paramMap.get('charName');
   }
@@ -31,6 +34,13 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     
     this.playerService.setPlayerService(this.gameId, this.playerName);
+    
+    // TODO: establish buttons for UI
+    this.buttons = {
+      locations: this.LOCATION_ARRAY,
+      suggest: '',
+      accuse: ''
+    }
 
     this.playerService.gameData$
       .subscribe(data => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)

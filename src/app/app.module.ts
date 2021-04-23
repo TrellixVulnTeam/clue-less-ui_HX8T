@@ -8,8 +8,7 @@ import { GameComponent } from './game/game.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WaitRoomComponent } from './wait-room/wait-room.component';
-import {MatRadioModule} from '@angular/material/radio';
-import { MatInputModule } from '@angular/material/input';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,7 @@ import { MatInputModule } from '@angular/material/input';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    MatRadioModule,
-    MatInputModule
+    MaterialModule
   ],
   providers: [
     PlayerService,

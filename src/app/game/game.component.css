@@ -1,0 +1,13 @@
+.location-buttons button {
+    font-size: 18px;
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+    white-space: normal;
+    color: #000000;
+    background-color: #98aa83;
+}
+
+.location-buttons button:disabled {
+    background-color: #dde7d2;
+}

@@ -74,5 +74,4 @@ export const environment = {
   PLAYER_STATE_COMPLETE_TURN: "complete_turn",
   PLAYER_STATE_WIN: "win",
   PLAYER_STATE_LOSE: "lose"
-  
 };

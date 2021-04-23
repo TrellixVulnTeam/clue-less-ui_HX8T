@@ -1,7 +1,6 @@
 <h2>
     Game Event: {{ eventMessage }}<br>
     Suggestion Cards: {{ suggestion }}<br>
-    Game Active: {{ active }}
 </h2>
 
 <p>
@@ -12,3 +11,13 @@
 <p>
     All Characters Data: {{ characters | json }}
 </p>
+
+<section>
+    <div class="location-buttons">
+        <div *ngFor="let loc of buttons.locations">
+            <button mat-raised-button disabled="{{ loc.disabled }}">
+                {{ loc.name }}
+            </button>
+        </div>
+    </div>
+</section>
