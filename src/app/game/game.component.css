@@ -16,7 +16,7 @@
     display: inline-block;
     position: absolute;
     bottom: 10%;
-    background-color: #4c5c64d5;
+    /* background-color: #4c5c64d5; */
 }
 
 .non-location-buttons-box button {
