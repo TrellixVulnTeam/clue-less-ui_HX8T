@@ -1,29 +1,28 @@
-<h2>
-    Game Event: {{ eventMessage }}<br>
-</h2>
+<!-- snackbar game message -->
+<div id="gameMessage">{{ eventMessage }}</div>
 
-<p>
-    Your Character Name: {{ charName }}<br>
-    Your Player Data: {{ player | json }}
-</p>
-
-<!-- <p>
-    All Characters Data: {{ characters | json }}
-</p> -->
-
-<div class="game-map">
-    <mat-grid-list cols="7" rowHeight="1.5:1" gutterSize="5px">
-        <ng-container *ngFor="let loc of locationButtons">
-            <div *ngIf='loc.label === "empty";else location_button_content'>
-                <mat-grid-tile class="empty-buttons">
-                    <button mat-raised-button disabled="true"></button>
-                </mat-grid-tile>
-            </div>
-            <ng-template #location_button_content>
-                <mat-grid-tile class="location-buttons">
-                    <button mat-raised-button disabled="{{ loc.disabled }}">{{ loc.label }}</button>
-                </mat-grid-tile>
-            </ng-template>
-        </ng-container>
-    </mat-grid-list>
+<div class="container">
+    <div class="game-map">
+        <mat-grid-list cols="7" rowHeight="1.5:1" gutterSize="5px">
+            <ng-container *ngFor="let loc of locationButtons">
+                <div *ngIf='loc.label === "empty";else location_button_content'>
+                    <mat-grid-tile>
+                        <button mat-raised-button disabled="true"></button>
+                    </mat-grid-tile>
+                </div>
+                <ng-template #location_button_content>
+                    <mat-grid-tile class="location-buttons">
+                        <button mat-raised-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{ loc.label }}</button>
+                    </mat-grid-tile>
+                </ng-template>
+            </ng-container>
+        </mat-grid-list>
+    </div>
+    
+    <div class="non-location-buttons-box">
+        <button mat-raised-button disabled="false" (click)="completeTurn()">complete-turn</button>
+        <button mat-raised-button disabled="false" (click)="completeTurn()">complete-turn</button>
+        <button mat-raised-button disabled="false" (click)="completeTurn()">complete-turn</button>
+        <button mat-raised-button (click)="showGameMessage()">show game message</button>
+    </div>
 </div>
