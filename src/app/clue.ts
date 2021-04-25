@@ -1,53 +1,77 @@
-import {LocationButton} from './location-button'
+import { LocationButton } from './location-button'
 import { environment } from '../environments/environment';
 import { ClueGameButton } from './clue-game-button';
 
 export class Clue {
 
+    // game data
+    gameId: any | undefined;
+    eventMessage: string | undefined;
+    suggestion: any | undefined;
+    characters: any | undefined;
+    active: boolean | undefined;
+
+    // player data
+    player: any | undefined;
+    playerName: string | undefined;
+    charName: any | undefined;
+
     MAP_ROWS = 7;
     MAP_COLS = 7;
 
-    locationButtonArray:LocationButton[] = [
-        
-        new LocationButton(environment.LOCATION_NAME_BALL_ROOM, environment.LOCATION_TYPE_ROOM, 4, 2),
-        new LocationButton(environment.LOCATION_NAME_BILLIARD_ROOM, environment.LOCATION_TYPE_ROOM, 4, 4 ),
-        new LocationButton(environment.LOCATION_NAME_CONSERVATORY, environment.LOCATION_TYPE_ROOM, 2, 2 ),
-        new LocationButton(environment.LOCATION_NAME_DINING_ROOM, environment.LOCATION_TYPE_ROOM, 6, 4 ),
-        new LocationButton(environment.LOCATION_NAME_HALL, environment.LOCATION_TYPE_ROOM, 4, 6 ),
-        new LocationButton(environment.LOCATION_NAME_KITCHEN, environment.LOCATION_TYPE_ROOM, 6, 2 ),
-        new LocationButton(environment.LOCATION_NAME_LOUNGE, environment.LOCATION_TYPE_ROOM, 6, 6 ),
-        new LocationButton(environment.LOCATION_NAME_LIBRARY, environment.LOCATION_TYPE_ROOM, 2, 4 ),
-        new LocationButton(environment.LOCATION_NAME_STUDY, environment.LOCATION_TYPE_ROOM, 2, 6 ),
-    
-        // add homes
-        new LocationButton(environment.LOCATION_NAME_MRS_WHITE_HOME, environment.LOCATION_TYPE_HOME, 5, 1 ),
-        new LocationButton(environment.LOCATION_NAME_MR_GREEN_HOME, environment.LOCATION_TYPE_HOME, 3, 1 ),
-        new LocationButton(environment.LOCATION_NAME_MRS_PEACOCK_HOME, environment.LOCATION_TYPE_HOME, 1, 3 ),
-        new LocationButton(environment.LOCATION_NAME_PROF_PLUM_HOME, environment.LOCATION_TYPE_HOME, 1, 5 ),
-        new LocationButton(environment.LOCATION_NAME_MISS_SCARLET_HOME, environment.LOCATION_TYPE_HOME, 5, 7 ),
-        new LocationButton(environment.LOCATION_NAME_COLONEL_MUSTARD_HOME, environment.LOCATION_TYPE_HOME, 7, 5 ),
-    
-        // add hallways
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_32, environment.LOCATION_TYPE_HALLWAY, 3, 2 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_52, environment.LOCATION_TYPE_HALLWAY, 5, 2 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_23, environment.LOCATION_TYPE_HALLWAY, 2, 3 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_43, environment.LOCATION_TYPE_HALLWAY, 4, 3 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_63, environment.LOCATION_TYPE_HALLWAY, 6, 3 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_34, environment.LOCATION_TYPE_HALLWAY, 3, 4 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_54, environment.LOCATION_TYPE_HALLWAY, 5, 4 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_25, environment.LOCATION_TYPE_HALLWAY, 2, 5 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_45, environment.LOCATION_TYPE_HALLWAY, 4, 5 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_65, environment.LOCATION_TYPE_HALLWAY, 6, 5 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_36, environment.LOCATION_TYPE_HALLWAY, 3, 6 ),
-        new LocationButton(environment.LOCATION_NAME_HALLWAY_56, environment.LOCATION_TYPE_HALLWAY, 5, 6 )
-    ];
-    locationButtons:LocationButton[] = this.initLocationButtonMap();
+    locationButtonArray: LocationButton[] = [
 
+        new LocationButton(environment.LOCATION_NAME_BALL_ROOM, environment.LOCATION_TYPE_ROOM, 4, 2),
+        new LocationButton(environment.LOCATION_NAME_BILLIARD_ROOM, environment.LOCATION_TYPE_ROOM, 4, 4),
+        new LocationButton(environment.LOCATION_NAME_CONSERVATORY, environment.LOCATION_TYPE_ROOM, 2, 2),
+        new LocationButton(environment.LOCATION_NAME_DINING_ROOM, environment.LOCATION_TYPE_ROOM, 6, 4),
+        new LocationButton(environment.LOCATION_NAME_HALL, environment.LOCATION_TYPE_ROOM, 4, 6),
+        new LocationButton(environment.LOCATION_NAME_KITCHEN, environment.LOCATION_TYPE_ROOM, 6, 2),
+        new LocationButton(environment.LOCATION_NAME_LOUNGE, environment.LOCATION_TYPE_ROOM, 6, 6),
+        new LocationButton(environment.LOCATION_NAME_LIBRARY, environment.LOCATION_TYPE_ROOM, 2, 4),
+        new LocationButton(environment.LOCATION_NAME_STUDY, environment.LOCATION_TYPE_ROOM, 2, 6),
+
+        // add homes
+        new LocationButton(environment.LOCATION_NAME_MRS_WHITE_HOME, environment.LOCATION_TYPE_HOME, 5, 1),
+        new LocationButton(environment.LOCATION_NAME_MR_GREEN_HOME, environment.LOCATION_TYPE_HOME, 3, 1),
+        new LocationButton(environment.LOCATION_NAME_MRS_PEACOCK_HOME, environment.LOCATION_TYPE_HOME, 1, 3),
+        new LocationButton(environment.LOCATION_NAME_PROF_PLUM_HOME, environment.LOCATION_TYPE_HOME, 1, 5),
+        new LocationButton(environment.LOCATION_NAME_MISS_SCARLET_HOME, environment.LOCATION_TYPE_HOME, 5, 7),
+        new LocationButton(environment.LOCATION_NAME_COLONEL_MUSTARD_HOME, environment.LOCATION_TYPE_HOME, 7, 5),
+
+        // add hallways
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_32, environment.LOCATION_TYPE_HALLWAY, 3, 2),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_52, environment.LOCATION_TYPE_HALLWAY, 5, 2),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_23, environment.LOCATION_TYPE_HALLWAY, 2, 3),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_43, environment.LOCATION_TYPE_HALLWAY, 4, 3),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_63, environment.LOCATION_TYPE_HALLWAY, 6, 3),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_34, environment.LOCATION_TYPE_HALLWAY, 3, 4),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_54, environment.LOCATION_TYPE_HALLWAY, 5, 4),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_25, environment.LOCATION_TYPE_HALLWAY, 2, 5),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_45, environment.LOCATION_TYPE_HALLWAY, 4, 5),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_65, environment.LOCATION_TYPE_HALLWAY, 6, 5),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_36, environment.LOCATION_TYPE_HALLWAY, 3, 6),
+        new LocationButton(environment.LOCATION_NAME_HALLWAY_56, environment.LOCATION_TYPE_HALLWAY, 5, 6)
+    ];
+    locationButtons: LocationButton[] = this.initLocationButtonMap();
+
+    completeTurnButton = new ClueGameButton('complete-turn');
     suggestButton = new ClueGameButton('suggest');
     accuseButton = new ClueGameButton('accuse');
 
+    // set player state constants
+    player_state_wait:string = environment.PLAYER_STATE_WAIT;
+    player_state_move:string = environment.PLAYER_STATE_MOVE;
+    player_state_suggest:string = environment.PLAYER_STATE_SUGGEST;
+    player_state_reveal:string = environment.PLAYER_STATE_REVEAL;
+    player_state_await_reveal:string = environment.PLAYER_STATE_AWAIT_REVEAL;
+    player_state_accept_reveal:string = environment.PLAYER_STATE_ACCEPT_REVEAL;
+    player_state_complete_turn:string = environment.PLAYER_STATE_COMPLETE_TURN;
+    player_state_win:string = environment.PLAYER_STATE_WIN;
+    player_state_lose:string = environment.PLAYER_STATE_LOSE;
+
     initLocationButtonMap() {
-        var locArr:LocationButton[] = [];
+        var locArr: LocationButton[] = [];
         var spaces_from_finished_rows;
         var spaces_from_unfinished_row;
         var index;
@@ -68,6 +92,63 @@ export class Clue {
         }
 
         return locArr;
+    }
+
+    // refresh frontend data 
+    refreshData(data: any) {
+        this.eventMessage = data.eventMessage;
+        this.active = data.active;
+        this.suggestion = data.suggestionCards;
+        this.characters = data.characters;
+
+        data.characters.forEach((character: any) => {
+
+            if (character.characterName == this.charName) {
+                this.player = character;
+                this.charName = this.player.characterName;
+            }
+        })
+
+        this.updateEnabledButtons();
+    }
+
+    // enable/disable buttons given updated data
+    updateEnabledButtons() {
+        // complete-turn button
+        if (this.player.state == this.player_state_complete_turn) {
+            // console.log(`enabling complete-turn button`)
+            this.completeTurnButton.enable();
+        } else {
+            // console.log(`disabling complete-turn button`)
+            this.completeTurnButton.disable();
+        }
+
+        // TODO: make-accusation button
+
+        // TODO: make-suggestion button
+
+        // location buttons
+        for (let locButton of this.locationButtons) {
+            if (this.player.state == 'move') { // begin enabling possible location buttons if in 'move' state
+                var isPossibleMove = false;
+                this.player.possibleMoves.forEach((location: any) => {
+                    if (locButton.label == location.name) {
+                        isPossibleMove = true;
+                    }
+                });
+
+                if (isPossibleMove) {
+                    // console.log(`enabling button: ${locButton.label}`)
+                    locButton.enable()
+                } else {
+                    // console.log(`disabling button: ${locButton.label}`)
+                    locButton.disable()
+                }
+            } else { // disable all location buttons if not in 'move' state
+                locButton.disable();
+            }
+
+        }
     }
 
 }

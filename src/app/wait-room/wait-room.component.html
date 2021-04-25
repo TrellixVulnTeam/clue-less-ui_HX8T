@@ -5,21 +5,5 @@
       Your Game ID: {{ gameId }}<br>
     </span>
 </h2>
-  <!-- <table>
-    <tr>
-      <th>Character Name</th>
-      <th>Player Name</th>
-    </tr>
-    <tr *ngFor="let character of game.characterMap">
-      <td>{{ character.name }}</td>
-      <td>{{ character.playerName }}</td>
-    </tr>
-  </table> -->
-  <!-- <div *ngFor="let characterKeyValue of game.characterMap | keyvalue">
-    Key: {{characterKeyValue.key}}
- 
-     <div *ngFor='let obj of characterKeyValue.value'>
-         {{ obj.title }}
-         {{ obj.desc }}
-     </div>
-  </div> -->
+
+<button mat-raised-button disabled="false" (click)="startGame()">start-game</button>

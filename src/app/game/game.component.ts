@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PlayerService } from '../player-service/player.service';
 import { ActivatedRoute } from '@angular/router';
 import { Clue } from '../clue';
-import { LocationButton } from '../location-button';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -12,70 +11,25 @@ import { FormBuilder } from '@angular/forms';
 })
 export class GameComponent extends Clue implements OnInit {
 
-  // game data
-  gameId: any | undefined;
-  eventMessage: string | undefined;
-  suggestion: any | undefined;
-  characters: any | undefined;
-  active: boolean | undefined;
-
-  // player data
-  player: any | undefined;
-  playerName: string | undefined;
-  charName: any | undefined;
-
   constructor(private route: ActivatedRoute, private playerService: PlayerService, private formBuilder: FormBuilder) {
     super();
     this.gameId = route.snapshot.paramMap.get('gameId');
     this.charName = route.snapshot.paramMap.get('charName');
   }
 
-  // refresh frontend data 
-  refreshData(data: any) {
-    this.eventMessage = data.eventMessage;
-    this.active = data.active;
-    this.suggestion = data.suggestionCards;
-    this.characters = data.characters;
+  // TODO: make accusation - use format for login component (createGame and joinGame)
+  makeAccusation() {
 
-    data.characters.forEach((character: any) => {
-      var isPossibleMove: boolean;
-      
-      if (character.characterName == this.charName) {
-        this.player = character;
-        this.charName = this.player.characterName;
+    console.log(`prompting ${this.playerName} for accusation`)
 
-        // check to see if each location is in user's possibleMoves and set to enabled if so
-        for (let locButton of this.locationButtons) {
-          isPossibleMove = false;
-          character.possibleMoves.forEach((location: any) => {
-            if (locButton.label == location.name) {
-              isPossibleMove = true;
-            }
-          });
+  };
 
-          if (isPossibleMove) {
-            // console.log(`enabling button: ${locButton.label}`)
-            locButton.enable()
-          } else {
-            // console.log(`disabling button: ${locButton.label}`)
-            locButton.disable()
-          }
-        }
-      }
-    })
-  }
+   // TODO: make suggestion - use format for login component (createGame and joinGame)
+   makeSuggestion() {
 
-  // show game message
-  showGameMessage() {
-    // Get the snackbar DIV
-    var x:any = document.getElementById("gameMessage");
-  
-    // Add the "show" class to DIV
-    x.className = "show";
-  
-    // After 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-  }
+    console.log(`prompting ${this.playerName} for suggestion`)
+
+  };
 
   // move  location
   moveLocation(locName: string) {
@@ -85,7 +39,7 @@ export class GameComponent extends Clue implements OnInit {
     // update plater position
     this.playerService.httpPostToBackend(`/${this.gameId}/location?playerName=${this.player.playerName}&charName=${this.charName}&locName=${locName}`).subscribe(
       data => {
-        this.refreshData(data);
+        this.gameComponentRefreshData(data);
       },
       error => {
         console.log("ERROR:", error);
@@ -103,7 +57,7 @@ export class GameComponent extends Clue implements OnInit {
     // update plater position
     this.playerService.httpPostToBackend(`/${this.gameId}/complete-turn?playerName=${this.player.playerName}&charName=${this.charName}`).subscribe(
       data => {
-        this.refreshData(data);
+        this.gameComponentRefreshData(data);
       },
       error => {
         console.log("ERROR:", error);
@@ -113,6 +67,31 @@ export class GameComponent extends Clue implements OnInit {
       })
   };
 
+  // custom refresh data actions for game-component
+  gameComponentRefreshData(data: any) {
+
+    // show game message if it has changed
+    if (data.eventMessage != this.eventMessage) {
+      this.showGameMessage();
+    }
+
+    // refresh data
+    this.refreshData(data);
+
+  }
+
+  // show game message
+  showGameMessage() {
+    // Get the snackbar DIV
+    var x: any = document.getElementById("gameMessage");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+  }
+
   // start page
   ngOnInit() {
 
@@ -120,7 +99,7 @@ export class GameComponent extends Clue implements OnInit {
 
     this.playerService.gameData$
       .subscribe(data => { // sets up the subscription for game data (this is refreshed every 5 seconds in game-backend.service)
-        this.refreshData(data);
+        this.gameComponentRefreshData(data);
       });
   }
 }
