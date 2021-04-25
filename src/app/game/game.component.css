@@ -27,7 +27,7 @@
     width: 30%;
     height: auto;
     display: inline-block;
-    position: absolute;
+    position: fixed;
     bottom: 10%;
     /* background-color: #4c5c64d5; */
 }
