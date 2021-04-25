@@ -29,9 +29,6 @@ export class PlayerService {
   refreshInterval = 5000; // every 5 seconds
 
   constructor(private httpClient: HttpClient) {
-    
-    this.gameId = 1; // TODO get from login component
-    this.charName = 'mr. green'; // TODO get from login component
 
     // POLLING GAME DATA EVERY 5 SECONDS
     this.gameData$ = timer(1, this.refreshInterval).pipe( 
