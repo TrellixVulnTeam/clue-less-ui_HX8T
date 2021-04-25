@@ -145,34 +145,9 @@ h2.title {
   outline: 2px solid #f00;
 }
 
-/* :host ::ng-deep .mat-radio-container {
-  display: none;
-} */
-
 #selectChar mat-label mat-radio-button img{
   width: 150px;
   height: auto;
   display: inline-block;
   text-align: center;
 }
-
-/* #selectCharacter::-moz-focus-inner {
-  border: 0;
-}
-#selectCharacter:focus {
-  outline: none;
-}
-#selectCharacter option{
-  height: 250px;
-  width: 160px;
-  font-size: 1.2em;
-  margin-left: 12px;
-  margin-right: 12px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  display: inline-block;
-  cursor: pointer;
-  border:rgb(67, 102, 53) solid 1px;
-  border-radius: 5px;
-  color: rgb(204, 204, 0);
-} */
