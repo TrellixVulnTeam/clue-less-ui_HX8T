@@ -1,17 +1,6 @@
-.bg {
-  /* The image used */
-  background-image: url("../../assets/images/background/game-component.jpeg");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-  /* Full height */
-  height: 100%; 
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.container {
+.game-container {
     display: block;
     position: relative;
 }
@@ -27,7 +16,7 @@
     width: 30%;
     height: auto;
     display: inline-block;
-    position: fixed;
+    position: relative;
     bottom: 10%;
     /* background-color: #4c5c64d5; */
 }
@@ -50,7 +39,7 @@
 
 .location-buttons button {
     font-size: 100%;
-    width: 80%;
+    width: 90%;
     height: 80%;
     white-space: normal;
     color: #000000;
@@ -107,3 +96,4 @@
     from {top: 30px; opacity: 1;}
     to {top: 0; opacity: 0;}
   }
+  

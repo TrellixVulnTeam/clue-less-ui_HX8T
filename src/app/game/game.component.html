@@ -2,13 +2,11 @@
 <html>
 
 <body>
-    <!-- set background -->
-    <div class="bg"></div>
 
     <!-- snackbar game message -->
     <div id="gameMessage">{{ eventMessage }}</div>
-
-    <div class="container">
+      
+    <div class="game-container">
         <div class="game-map">
             <mat-grid-list cols="7" rowHeight="1.5:1" gutterSize="5px">
                 <ng-container *ngFor="let loc of locationButtons">
@@ -31,10 +29,13 @@
         <div class="non-location-buttons-box">
             <button mat-stroked-button disabled="{{ completeTurnButton.disabled }}" (click)="completeTurn()">complete-turn</button>
             <button mat-stroked-button disabled="{{ accuseButton.disabled }}" (click)="makeAccusation()">make-accusation</button>
-            <button mat-stroked-button disabled="{{ suggestButton.disabled }}" (click)="makeSuggestion()">make-suggestion</button>
+            <!-- <button mat-stroked-button disabled="{{ suggestButton.disabled }}" (click)="makeSuggestion()">make-suggestion</button> -->
+            <button mat-stroked-button disabled="false" (click)="openSuggestionDialog()">make-suggestion</button>
             <button mat-stroked-button (click)="showGameMessage()">show game message</button>
         </div>
     </div>
+    
 </body>
+  
 
 </html>
