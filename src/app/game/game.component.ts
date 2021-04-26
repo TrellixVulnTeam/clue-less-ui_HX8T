@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { PlayerService } from '../player-service/player.service';
 import { ActivatedRoute } from '@angular/router';
 import { Clue } from '../clue';
-import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';]
+import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'game',
