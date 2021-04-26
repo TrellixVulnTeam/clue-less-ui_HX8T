@@ -1,8 +1,44 @@
 import { LocationButton } from './location-button'
 import { environment } from '../environments/environment';
 import { ClueGameButton } from './clue-game-button';
+import { FormBuilder } from '@angular/forms';
 
 export class Clue {
+
+    // set guessing form
+    guessForm = new FormBuilder().group({
+        charSelected: '',
+        weaponSelected: '',
+        roomSelected: ''
+    });
+
+    // Set character constants
+    char_name_mrs_white = environment.CHARACTER_NAME_MRS_WHITE;
+    char_name_mr_green = environment.CHARACTER_NAME_MR_GREEN;
+    char_name_mrs_peacock = environment.CHARACTER_NAME_MRS_PEACOCK;
+    char_name_prof_plum = environment.CHARACTER_NAME_PROF_PLUM;
+    char_name_miss_scarlet = environment.CHARACTER_NAME_MISS_SCARLET;
+    char_name_col_mustard = environment.CHARACTER_NAME_COLONEL_MUSTARD;
+
+    // Set weapon constants
+    weapon_name_candlestick = environment.WEAPON_NAME_CANDLESTICK;
+    weapon_name_knife = environment.WEAPON_NAME_KNIFE;
+    weapon_name_leadpipe = environment.WEAPON_NAME_LEADPIPE;
+    weapon_name_revolver = environment.WEAPON_NAME_REVOLVER;
+    weapon_name_rope = environment.WEAPON_NAME_ROPE;
+    weapon_name_wrench = environment.WEAPON_NAME_WRENCH;
+
+    // Set room constants
+    location_name_ball_room = environment.LOCATION_NAME_BALL_ROOM;
+    location_name_billiard_room = environment.LOCATION_NAME_BILLIARD_ROOM;
+    location_name_conservatory = environment.LOCATION_NAME_CONSERVATORY;
+    location_name_dining_room = environment.LOCATION_NAME_DINING_ROOM;
+    location_name_hall = environment.LOCATION_NAME_HALL;
+    location_name_kitchen = environment.LOCATION_NAME_KITCHEN;
+    location_name_library = environment.LOCATION_NAME_LIBRARY;
+    location_name_lounge = environment.LOCATION_NAME_LOUNGE;
+    location_name_study = environment.LOCATION_NAME_STUDY;
+
 
     // game data
     gameId: any | undefined;
@@ -60,15 +96,15 @@ export class Clue {
     accuseButton = new ClueGameButton('accuse');
 
     // set player state constants
-    player_state_wait:string = environment.PLAYER_STATE_WAIT;
-    player_state_move:string = environment.PLAYER_STATE_MOVE;
-    player_state_suggest:string = environment.PLAYER_STATE_SUGGEST;
-    player_state_reveal:string = environment.PLAYER_STATE_REVEAL;
-    player_state_await_reveal:string = environment.PLAYER_STATE_AWAIT_REVEAL;
-    player_state_accept_reveal:string = environment.PLAYER_STATE_ACCEPT_REVEAL;
-    player_state_complete_turn:string = environment.PLAYER_STATE_COMPLETE_TURN;
-    player_state_win:string = environment.PLAYER_STATE_WIN;
-    player_state_lose:string = environment.PLAYER_STATE_LOSE;
+    player_state_wait: string = environment.PLAYER_STATE_WAIT;
+    player_state_move: string = environment.PLAYER_STATE_MOVE;
+    player_state_suggest: string = environment.PLAYER_STATE_SUGGEST;
+    player_state_reveal: string = environment.PLAYER_STATE_REVEAL;
+    player_state_await_reveal: string = environment.PLAYER_STATE_AWAIT_REVEAL;
+    player_state_accept_reveal: string = environment.PLAYER_STATE_ACCEPT_REVEAL;
+    player_state_complete_turn: string = environment.PLAYER_STATE_COMPLETE_TURN;
+    player_state_win: string = environment.PLAYER_STATE_WIN;
+    player_state_lose: string = environment.PLAYER_STATE_LOSE;
 
     initLocationButtonMap() {
         var locArr: LocationButton[] = [];
@@ -124,8 +160,10 @@ export class Clue {
         }
 
         // TODO: make-accusation button
+        // if it's your turn
 
         // TODO: make-suggestion button
+        // if state is 'suggest' OR if wasMovedToRoom is TRUE
 
         // location buttons
         for (let locButton of this.locationButtons) {

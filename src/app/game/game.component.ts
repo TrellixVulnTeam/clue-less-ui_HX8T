@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { PlayerService } from '../player-service/player.service';
 import { ActivatedRoute } from '@angular/router';
 import { Clue } from '../clue';
-import { FormBuilder } from '@angular/forms';
+import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';]
 
 @Component({
   selector: 'game',
@@ -11,23 +11,24 @@ import { FormBuilder } from '@angular/forms';
 })
 export class GameComponent extends Clue implements OnInit {
 
-  constructor(private route: ActivatedRoute, private playerService: PlayerService, private formBuilder: FormBuilder) {
+  constructor(private route: ActivatedRoute, private playerService: PlayerService, public dialog: MatDialog) {
     super();
     this.gameId = route.snapshot.paramMap.get('gameId');
     this.charName = route.snapshot.paramMap.get('charName');
+  }
+
+  openSuggestionDialog() {
+    const dialogRef = this.dialog.open(SuggestionDialog);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   // TODO: make accusation - use format for login component (createGame and joinGame)
   makeAccusation() {
 
     console.log(`prompting ${this.playerName} for accusation`)
-
-  };
-
-   // TODO: make suggestion - use format for login component (createGame and joinGame)
-   makeSuggestion() {
-
-    console.log(`prompting ${this.playerName} for suggestion`)
 
   };
 
@@ -102,4 +103,37 @@ export class GameComponent extends Clue implements OnInit {
         this.gameComponentRefreshData(data);
       });
   }
+}
+
+@Component({
+  selector: 'suggestion-dialog',
+  templateUrl: 'suggestion-dialog.html',
+  styleUrls: ['./suggestion-dialog.css']
+})
+export class SuggestionDialog extends Clue {
+
+  constructor( public dialogRef: MatDialogRef<SuggestionDialog>) {
+    super();
+  }
+
+  // TODO: make suggestion - use format for login component (createGame and joinGame)
+  makeSuggestion() {
+
+    console.log(`submitting suggesiton provided by player: ${this.playerName}`)
+    // update plater position
+    // this.playerService.httpPostToBackend(`/${this.gameId}/complete-turn?playerName=${this.player.playerName}&charName=${this.charName}`).subscribe(
+    //   data => {
+    //     this.gameComponentRefreshData(data);
+    //   },
+    //   error => {
+    //     console.log("ERROR:", error);
+    //     this.dialogRef.close();
+    //   },
+    //   () => {
+    //     console.log("POST for completing turn is completed");
+    //   })
+
+
+      this.dialogRef.close();
+  };
 }

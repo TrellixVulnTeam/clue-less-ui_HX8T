@@ -1,0 +1,174 @@
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+
+<h2 mat-dialog-title>Make your suggestion</h2>
+<mat-dialog-content id="suggestionDialog" class="mat-typography">
+  <div id="suggestionDialog">
+    <form [formGroup]="guessForm" action="post">
+
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <div>
+                Suspect
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-radio-group formControlName="charSelected" class="selectCard">
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{char_name_col_mustard}}>
+                <img src="assets/images/login/character_selection/col. mustard.jpg">
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{char_name_miss_scarlet}}>
+                <img src="assets/images/login/character_selection/miss scarlet.jpg">
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{char_name_mrs_peacock}}>
+                <img src="assets/images/login/character_selection/mrs. peacock.jpg">
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{char_name_mrs_white}}>
+                <img src="assets/images/login/character_selection/mrs. white.jpg">
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{char_name_mr_green}}>
+                <img src="assets/images/login/character_selection/mr. green.jpg">
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{char_name_prof_plum}}>
+                <img src="assets/images/login/character_selection/prof. plum.jpg">
+              </mat-radio-button>
+            </mat-label>
+          </mat-radio-group>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="panelTitle">
+                Weapon
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-radio-group formControlName="weaponSelected" class="selectCard">
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{weapon_name_rope}}>
+                <!-- <img src="assets/images/login/character_selection/col. mustard.jpg"> -->
+                Rope
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{weapon_name_leadpipe}}>
+                <!-- <img src="assets/images/login/character_selection/miss scarlet.jpg"> -->
+                Lead Pipe
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{weapon_name_knife}}>
+                <!-- <img src="assets/images/login/character_selection/mrs. peacock.jpg"> -->
+                Knife
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{weapon_name_wrench}}>
+                <!-- <img src="assets/images/login/character_selection/mrs. white.jpg"> -->
+                Wrench
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{weapon_name_candlestick}}>
+                <!-- <img src="assets/images/login/character_selection/mr. green.jpg"> -->
+                Candlestick
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{weapon_name_revolver}}>
+                <!-- <img src="assets/images/login/character_selection/prof. plum.jpg"> -->
+                Revolver
+              </mat-radio-button>
+            </mat-label>
+          </mat-radio-group>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title class="panelTitle">
+                Room
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-radio-group formControlName="roomSelected" class="selectCard">
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{location_name_ball_room}}>
+                <!-- <img src="assets/images/login/character_selection/col. mustard.jpg"> -->
+                Ball Room
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{location_name_billiard_room}}>
+                <!-- <img src="assets/images/login/character_selection/miss scarlet.jpg"> -->
+                Billiard Room
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{location_name_conservatory}}>
+                <!-- <img src="assets/images/login/character_selection/mrs. peacock.jpg"> -->
+                Conservatory
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{location_name_dining_room}}>
+                <!-- <img src="assets/images/login/character_selection/mrs. white.jpg"> -->
+                Dining Room
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{location_name_hall}}>
+                <!-- <img src="assets/images/login/character_selection/mr. green.jpg"> -->
+                Hall
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{location_name_kitchen}}>
+                <!-- <img src="assets/images/login/character_selection/prof. plum.jpg"> -->
+                Kitchen
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{location_name_library}}>
+                <!-- <img src="assets/images/login/character_selection/prof. plum.jpg"> -->
+                Library
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{location_name_lounge}}>
+                <!-- <img src="assets/images/login/character_selection/prof. plum.jpg"> -->
+                Lounge
+              </mat-radio-button>
+            </mat-label>
+            <mat-label>
+              <mat-radio-button class="female-radio" value={{location_name_study}}>
+                <!-- <img src="assets/images/login/character_selection/prof. plum.jpg"> -->
+                Study
+              </mat-radio-button>
+            </mat-label>
+          </mat-radio-group>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </form>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="makeSuggestion()" cdkFocusInitial>Install</button>
+</mat-dialog-actions>
