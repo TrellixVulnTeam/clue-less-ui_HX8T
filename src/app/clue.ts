@@ -2,17 +2,25 @@ import { LocationButton } from './location-button'
 import { environment } from '../environments/environment';
 import { ClueGameButton } from './clue-game-button';
 import { FormBuilder } from '@angular/forms';
+import { PlayerService } from './player-service/player.service';
 
 export class Clue {
 
     // set guessing form
-    guessForm = new FormBuilder().group({
-        charSelected: '',
-        weaponSelected: '',
-        roomSelected: ''
-    });
+    guessSuspect =''
+    guessWeapon = ''
+    guessRoom = '';
 
     // Set character constants
+    characterNamesList = [
+        environment.CHARACTER_NAME_MRS_WHITE,
+        environment.CHARACTER_NAME_MR_GREEN,
+        environment.CHARACTER_NAME_MRS_PEACOCK,
+        environment.CHARACTER_NAME_PROF_PLUM,
+        environment.CHARACTER_NAME_MISS_SCARLET,
+        environment.CHARACTER_NAME_COLONEL_MUSTARD
+    ]
+
     char_name_mrs_white = environment.CHARACTER_NAME_MRS_WHITE;
     char_name_mr_green = environment.CHARACTER_NAME_MR_GREEN;
     char_name_mrs_peacock = environment.CHARACTER_NAME_MRS_PEACOCK;
@@ -21,6 +29,15 @@ export class Clue {
     char_name_col_mustard = environment.CHARACTER_NAME_COLONEL_MUSTARD;
 
     // Set weapon constants
+
+    weaponNamesList = [
+        environment.WEAPON_NAME_CANDLESTICK,
+        environment.WEAPON_NAME_KNIFE,
+        environment.WEAPON_NAME_LEADPIPE,
+        environment.WEAPON_NAME_REVOLVER,
+        environment.WEAPON_NAME_ROPE,
+        environment.WEAPON_NAME_WRENCH
+    ]
     weapon_name_candlestick = environment.WEAPON_NAME_CANDLESTICK;
     weapon_name_knife = environment.WEAPON_NAME_KNIFE;
     weapon_name_leadpipe = environment.WEAPON_NAME_LEADPIPE;
@@ -29,6 +46,18 @@ export class Clue {
     weapon_name_wrench = environment.WEAPON_NAME_WRENCH;
 
     // Set room constants
+    roomNamesList = [
+        environment.LOCATION_NAME_BALL_ROOM,
+        environment.LOCATION_NAME_BILLIARD_ROOM,
+        environment.LOCATION_NAME_CONSERVATORY,
+        environment.LOCATION_NAME_DINING_ROOM,
+        environment.LOCATION_NAME_HALL,
+        environment.LOCATION_NAME_KITCHEN,
+        environment.LOCATION_NAME_LIBRARY,
+        environment.LOCATION_NAME_LOUNGE,
+        environment.LOCATION_NAME_STUDY
+    ]
+
     location_name_ball_room = environment.LOCATION_NAME_BALL_ROOM;
     location_name_billiard_room = environment.LOCATION_NAME_BILLIARD_ROOM;
     location_name_conservatory = environment.LOCATION_NAME_CONSERVATORY;
@@ -49,6 +78,7 @@ export class Clue {
 
     // player data
     player: any | undefined;
+    playerMessage: any | undefined;
     playerName: string | undefined;
     charName: any | undefined;
 
@@ -132,6 +162,7 @@ export class Clue {
 
     // refresh frontend data 
     refreshData(data: any) {
+
         this.eventMessage = data.eventMessage;
         this.active = data.active;
         this.suggestion = data.suggestionCards;
@@ -142,6 +173,8 @@ export class Clue {
             if (character.characterName == this.charName) {
                 this.player = character;
                 this.charName = this.player.characterName;
+                this.playerName = this.player.playerName;
+                this.playerMessage = this.player.eventMessage;
             }
         })
 
