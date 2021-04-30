@@ -1,12 +1,7 @@
 #!/bin/bash
 
-curl localhost:8080/games?name=Zach -X POST
-curl localhost:8080/games?name=Tim -X POST
+data=$(curl 'localhost:8080/games?playerName=Zach&charName=colonel%20mustard' -X POST)
+gameId=$(echo $data | jq '.gameId')
 
-curl localhost:8080/games/1/players?name=Alex -X POST
-curl localhost:8080/games/1/players?name=Megan -X POST
-
-
-curl localhost:8080/games?name=Roger -X POST
-curl localhost:8080/games/3/players?name=Miles -X POST
-curl localhost:8080/games/3/players?name=Meera -X POST
+curl "localhost:8080/games/${gameId}/players?playerName=Meera&charName=miss%20scarlet" -X POST
+curl "localhost:8080/games/${gameId}/players?playerName=Charles&charName=mr.%20green" -X POST

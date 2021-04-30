@@ -8,7 +8,6 @@ import { GameComponent } from './game/game.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WaitRoomComponent } from './wait-room/wait-room.component';
-import { SuggestionDialog } from './game/game.component';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -17,8 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent,
     GameComponent,
     LoginComponent,
-    WaitRoomComponent,
-    SuggestionDialog
+    WaitRoomComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +26,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     MaterialModule,
     BrowserAnimationsModule
-  ],
-  entryComponents: [
-    SuggestionDialog
   ],
   providers: [
     PlayerService,

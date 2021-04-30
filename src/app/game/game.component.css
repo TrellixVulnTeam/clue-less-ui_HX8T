@@ -1,99 +1,232 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.game-container {
-    display: block;
-    position: relative;
+div.actions-banner {
+  height: 100px;
+  display: inline-flex;
+  position: relative;
+  justify-content: space-evenly;
+  top: 0;
+  width: 100%;
+  background-color: #4c5c64d5;
 }
 
-.game-map {
-    width: 70%;
-    height: auto;
-    display: inline-block;
-    bottom: 0;
+#action-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 30%;
+  height: 100%;
+  /* background-color: #72f06ed5; */
 }
 
-.non-location-buttons-box {
-    width: 30%;
-    height: auto;
-    display: inline-block;
-    position: relative;
-    bottom: 10%;
-    /* background-color: #4c5c64d5; */
+#action-buttons {
+  position: relative;
+  background-color: bisque;
 }
 
-.non-location-buttons-box button {
-    width: 60%;
-    font-size: 100%;
-    margin:0 auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    display:block;
-    white-space: normal;
-    color: #000000;
-    background-color: #4abaeed5;
+#guess-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.non-location-buttons-box button:disabled {
-    background-color: #8bb2c4c0;
+#guess-column div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#guess-column div button {
+  display: inline-block;
+}
+
+#accuse-button {
+  background-color: #c95541ce;
+}
+
+#suggest-button {
+  background-color: #c99e41ce;
+}
+
+
+/* mat-expansion-panel {
+  z-index: 10000 !important;
+}
+
+mat-expansion-panel-header {
+  background-color: #6ebcf0d5;
+}
+
+mat-panel-title {
+  background-color: bisque;
+  justify-content: center;
+} */
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-select {
+  background-color: rgb(133, 201, 150);
+  padding: 3px;
+}
+
+mat-option {
+  position: inherit;
+  background-color: rgb(150, 159, 207);
+  font-size: small;
+  z-index: 10002 !important;
+}
+
+
+
+
+
+/* GAME MAP */
+
+div.game-container {
+  display: block;
+  width: 80%;
+  margin: 0% 5%;
 }
 
 .location-buttons button {
-    font-size: 100%;
-    width: 90%;
-    height: 80%;
-    white-space: normal;
-    color: #000000;
-    background-color: #74c48cd5;
+  font-size: 70%;
+  width: 120px;
+  height: 80px;
+  white-space: normal;
+  color: #000000;
+  background-color: #74c48cd5;
 }
 
 .location-buttons button:disabled {
-    background-color: #e0bfb988;
+  background-color: #e0bfb988;
 }
 
-
 /* The gameMessage - position it at the bottom and in the middle of the screen */
+
 #gameMessage {
-    visibility: hidden; /* Hidden by default. Visible on click */
-    min-width: 250px; /* Set a default minimum width */
-    margin-left: -125px; /* Divide value of min-width by 2 */
-    background-color: #333; /* Black background color */
-    color: #fff; /* White text color */
-    text-align: center; /* Centered text */
-    border-radius: 2px; /* Rounded borders */
-    padding: 16px; /* Padding */
-    position: fixed; /* Sit on top of the screen */
-    z-index: 1; /* Add a z-index if needed */
-    left: 50%; /* Center the gameMessage */
-    top: 30px; /* 30px from the bottom */
-  }
-  
-  /* Show the gameMessage when clicking on a button (class added with JavaScript) */
-  #gameMessage.show {
-    visibility: visible; /* Show the gameMessage */
-    /* Add animation: Take 0.5 seconds to fade in and out the gameMessage.
+  visibility: hidden;
+  /* Hidden by default. Visible on click */
+  min-width: 250px;
+  width: 30%;
+
+  /* Set a default minimum width */
+  margin-left: -15%;
+  /* Divide value of min-width by 2 */
+  background-color: #333;
+  /* Black background color */
+  color: #fff;
+  /* White text color */
+  text-align: center;
+  /* Centered text */
+  border-radius: 2px;
+  /* Rounded borders */
+  padding: 16px;
+  /* Padding */
+  position: absolute;
+  /* Sit on top of the screen */
+  z-index: 10001 !important;
+  /* Add a z-index if needed */
+  left: 25%;
+  /* Center the gameMessage */
+  top: 30px;
+  /* 30px from the bottom */
+}
+
+/* Show the gameMessage when clicking on a button (class added with JavaScript) */
+
+#gameMessage.show {
+  visibility: visible;
+  /* Show the gameMessage */
+  /* Add animation: Take 0.5 seconds to fade in and out the gameMessage.
     However, delay the fade out process for 2.5 seconds */
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+#playerMessage {
+  visibility: hidden;
+  /* Hidden by default. Visible on click */
+  min-width: 250px;
+  width: 30%;
+
+  /* Set a default minimum width */
+  margin-right: -15%;
+  /* Divide value of min-width by 2 */
+  background-color: #333;
+  /* Black background color */
+  color: #fff;
+  /* White text color */
+  text-align: center;
+  /* Centered text */
+  border-radius: 2px;
+  /* Rounded borders */
+  padding: 16px;
+  /* Padding */
+  position: absolute;
+  /* Sit on top of the screen */
+  z-index: 9999 !important;
+  /* Add a z-index if needed */
+  right: 25%;
+  /* Center the playerMessage */
+  top: 30px;
+  /* 30px from the bottom */
+}
+
+/* Show the playerMessage when clicking on a button (class added with JavaScript) */
+
+#playerMessage.show {
+  visibility: visible;
+  /* Show the playerMessage */
+  /* Add animation: Take 0.5 seconds to fade in and out the playerMessage.
+    However, delay the fade out process for 2.5 seconds */
+  -webkit-animation-player: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the gameMessage in and out */
+
+@-webkit-keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
   }
-  
-  /* Animations to fade the gameMessage in and out */
-  @-webkit-keyframes fadein {
-    from {top: 0; opacity: 0;}
-    to {top: 30px; opacity: 1;}
+  to {
+    top: 30px;
+    opacity: 1;
   }
-  
-  @keyframes fadein {
-    from {top: 0; opacity: 0;}
-    to {top: 30px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {
+    top: 0;
+    opacity: 0;
   }
-  
-  @-webkit-keyframes fadeout {
-    from {top: 30px; opacity: 1;}
-    to {top: 0; opacity: 0;}
+  to {
+    top: 30px;
+    opacity: 1;
   }
-  
-  @keyframes fadeout {
-    from {top: 30px; opacity: 1;}
-    to {top: 0; opacity: 0;}
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
   }
-  
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    top: 30px;
+    opacity: 1;
+  }
+  to {
+    top: 0;
+    opacity: 0;
+  }
+}

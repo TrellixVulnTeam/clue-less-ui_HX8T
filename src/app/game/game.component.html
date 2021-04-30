@@ -4,38 +4,60 @@
 <body>
 
     <!-- snackbar game message -->
-    <div id="gameMessage">{{ eventMessage }}</div>
-      
-    <div class="game-container">
-        <div class="game-map">
-            <mat-grid-list cols="7" rowHeight="1.5:1" gutterSize="5px">
-                <ng-container *ngFor="let loc of locationButtons">
-                    <div *ngIf='loc.label === "empty";else location_button_content'>
-                        <mat-grid-tile>
-                            <button mat-button disabled="true"></button>
-                        </mat-grid-tile>
-                    </div>
-                    <ng-template #location_button_content>
-                        <mat-grid-tile class="location-buttons">
-                            <button mat-stroked-button disabled="{{ loc.disabled }}"
-                                (click)="moveLocation(loc.label)">{{ loc.label }}
-                            </button>
-                        </mat-grid-tile>
-                    </ng-template>
-                </ng-container>
-            </mat-grid-list>
-        </div>
+    <div id="gameMessage">Game Event: {{ eventMessage }}</div>
+    <div id="playerMessage">Player Message: {{ player.eventMessage }}</div>
 
-        <div class="non-location-buttons-box">
-            <button mat-stroked-button disabled="{{ completeTurnButton.disabled }}" (click)="completeTurn()">complete-turn</button>
-            <button mat-stroked-button disabled="{{ accuseButton.disabled }}" (click)="makeAccusation()">make-accusation</button>
-            <!-- <button mat-stroked-button disabled="{{ suggestButton.disabled }}" (click)="makeSuggestion()">make-suggestion</button> -->
-            <button mat-stroked-button disabled="false" (click)="openSuggestionDialog()">make-suggestion</button>
-            <button mat-stroked-button (click)="showGameMessage()">show game message</button>
+    <div class="actions-banner">
+        <div id="action-column">
+            <button id="action-buttons" mat-stroked-button disabled="{{ completeTurnButton.disabled }}"
+                (click)="completeTurn()">complete-turn</button>
+            <button id="action-buttons" mat-stroked-button (click)="showGameMessage()">show game message</button>
+            <button id="action-buttons" mat-stroked-button (click)="showPlayerMessage()">show player message</button>
+        </div>
+        <div id="guess-column">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-select placeholder="Choose Suspect" [(value)]="guessSuspect">
+                        <mat-option *ngFor="let char of characterNamesList" [value]="char">{{char}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-select placeholder="Choose Weapon" [(value)]="guessWeapon">
+                        <mat-option *ngFor="let weapon of weaponNamesList" [value]="weapon">{{weapon}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-select placeholder="Choose Room" [(value)]="guessRoom">
+                        <mat-option *ngFor="let room of roomNamesList" [value]="room">{{room}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <button id="accuse-button" mat-button (click)="makeAccusation()" cdkFocusInitial>Submit Accusation</button>
+                <button id="suggest-button" mat-button (click)="makeSuggestion()" cdkFocusInitial>Submit Suggestion</button>
+            </div>
         </div>
     </div>
     
+    <div class="game-container">
+        <mat-grid-list cols="7" rowHeight="1.6:1" gutterSize="2px">
+            <ng-container *ngFor="let loc of locationButtons">
+                <div *ngIf='loc.label === "empty";else location_button_content'>
+                    <mat-grid-tile>
+                        <button mat-button disabled="true"></button>
+                    </mat-grid-tile>
+                </div>
+                <ng-template #location_button_content>
+                    <mat-grid-tile class="location-buttons">
+                        <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{
+                            loc.label }}
+                        </button>
+                    </mat-grid-tile>
+                </ng-template>
+            </ng-container>
+        </mat-grid-list>
+    </div>
+
 </body>
-  
 
 </html>

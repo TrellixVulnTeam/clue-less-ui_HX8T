@@ -11,25 +11,46 @@ import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_D
 })
 export class GameComponent extends Clue implements OnInit {
 
-  constructor(private route: ActivatedRoute, private playerService: PlayerService, public dialog: MatDialog) {
+  constructor(public route: ActivatedRoute, public playerService: PlayerService, public dialog: MatDialog) {
     super();
     this.gameId = route.snapshot.paramMap.get('gameId');
     this.charName = route.snapshot.paramMap.get('charName');
   }
 
-  openSuggestionDialog() {
-    const dialogRef = this.dialog.open(SuggestionDialog);
+  // make suggestion 
+  makeSuggestion() {
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
+    console.log(`submitting suggestion provided by player: ${this.playerName}`)
 
-  // TODO: make accusation - use format for login component (createGame and joinGame)
+    // send post request
+    this.playerService.httpPostToBackend(`/${this.gameId}/suggestion/suggest?playerName=${this.player.playerName}&charName=${this.charName}&weapon=${this.guessWeapon}&room=${this.guessRoom}&suspect=${this.guessSuspect}`).subscribe(
+      data => {
+        this.gameComponentRefreshData(data);
+      },
+      error => {
+        console.log("ERROR:", error);
+      },
+      () => {
+        console.log("POST for moving location is completed");
+      })
+  };
+
+  // make accusation 
   makeAccusation() {
 
-    console.log(`prompting ${this.playerName} for accusation`)
+    console.log(`submitting accusation provided by player: ${this.playerName}`)
 
+    // send post request
+    this.playerService.httpPostToBackend(`/${this.gameId}/accusation/accuse?playerName=${this.player.playerName}&charName=${this.charName}&weapon=${this.guessWeapon}&room=${this.guessRoom}&suspect=${this.guessSuspect}`).subscribe(
+      data => {
+        this.gameComponentRefreshData(data);
+      },
+      error => {
+        console.log("ERROR:", error);
+      },
+      () => {
+        console.log("POST for moving location is completed");
+      })
   };
 
   // move  location
@@ -76,8 +97,21 @@ export class GameComponent extends Clue implements OnInit {
       this.showGameMessage();
     }
 
-    // refresh data
-    this.refreshData(data);
+    data.characters.forEach((character: any) => {
+      if (character.characterName == this.charName) {
+
+        console.log(character.eventMessage);
+
+        if (character.eventMessage != this.playerMessage) {
+          this.showPlayerMessage();
+        }
+
+        // refresh data
+        this.refreshData(data);
+      }
+    })
+
+
 
   }
 
@@ -93,6 +127,20 @@ export class GameComponent extends Clue implements OnInit {
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
   }
 
+  // show player message
+  showPlayerMessage() {
+    
+    // Get the snackbar DIV
+    var x: any = document.getElementById("playerMessage");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+  }
+
+
   // start page
   ngOnInit() {
 
@@ -103,37 +151,4 @@ export class GameComponent extends Clue implements OnInit {
         this.gameComponentRefreshData(data);
       });
   }
-}
-
-@Component({
-  selector: 'suggestion-dialog',
-  templateUrl: 'suggestion-dialog.html',
-  styleUrls: ['./suggestion-dialog.css']
-})
-export class SuggestionDialog extends Clue {
-
-  constructor( public dialogRef: MatDialogRef<SuggestionDialog>) {
-    super();
-  }
-
-  // TODO: make suggestion - use format for login component (createGame and joinGame)
-  makeSuggestion() {
-
-    console.log(`submitting suggesiton provided by player: ${this.playerName}`)
-    // update plater position
-    // this.playerService.httpPostToBackend(`/${this.gameId}/complete-turn?playerName=${this.player.playerName}&charName=${this.charName}`).subscribe(
-    //   data => {
-    //     this.gameComponentRefreshData(data);
-    //   },
-    //   error => {
-    //     console.log("ERROR:", error);
-    //     this.dialogRef.close();
-    //   },
-    //   () => {
-    //     console.log("POST for completing turn is completed");
-    //   })
-
-
-      this.dialogRef.close();
-  };
 }
