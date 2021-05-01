@@ -1,8 +1,8 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 div.actions-banner {
-  height: 100px;
-  display: inline-flex;
+  height: 110px;
+  display: flex;
   position: relative;
   vertical-align: middle;
   justify-content: space-evenly;
@@ -27,17 +27,14 @@ div.actions-banner {
   background-color: bisque;
 }
 
-/* .button-label {
-  display: block;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgb(36, 126, 33);
-} */
+
 
 #guess-column {
+  width: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  /* background-color: #ff6123d5; */
 }
 
 #guess-column div {
@@ -50,6 +47,34 @@ div.actions-banner {
   display: inline-block;
 }
 
+#guess-selections {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+mat-form-field {
+  display: inline-block;
+  height: auto;
+  /* background-color: #49baf3d5; */
+  width: 30%;
+}
+
+mat-select {
+  /* background-color: rgb(133, 201, 150); */
+  height: auto;
+  color: #000000;
+  width: 100%;
+}
+
+mat-option {
+  position: relative;
+  color: #000000;
+  background-color: rgb(150, 159, 207);
+  font-size: smaller;
+  /* z-index: 10004 !important; */
+}
+
 #accuse-button {
   background-color: #c95541ce;
 }
@@ -58,21 +83,6 @@ div.actions-banner {
   background-color: #c99e41ce;
 }
 
-mat-form-field {
-  width: 100%;
-}
-
-mat-select {
-  background-color: rgb(133, 201, 150);
-  padding: 3px;
-}
-
-mat-option {
-  position: inherit;
-  background-color: rgb(150, 159, 207);
-  font-size: small;
-  z-index: 10002 !important;
-}
 
 
 
@@ -97,6 +107,7 @@ div.game-container mat-grid-list {
   height: 80px;
   white-space: normal;
   color: #000000;
+  background-color: aquamarine;
 }
 
 .location-buttons button:disabled {
@@ -134,10 +145,10 @@ div.handCardType {
 }
 
 div.handCardType mat-list {
-  /* background-color: rgb(112, 110, 207); */
+  text-align: left;
 }
 
-div.handCardType mat-list mat-list-item {
+p {
   font-size: small;
   height: auto;
   margin: 5px;
@@ -157,7 +168,6 @@ div.knownCards mat-selection-list {
 
 div.knownCards mat-selection-list mat-list-option {
   display: block;
-  font-size: small;
   text-align: left;
 }
 

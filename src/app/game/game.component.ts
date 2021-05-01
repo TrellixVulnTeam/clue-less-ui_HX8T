@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { PlayerService } from '../player-service/player.service';
 import { ActivatedRoute } from '@angular/router';
 import { Clue } from '../clue';
@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_D
 @Component({
   selector: 'game',
   templateUrl: './game.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./game.component.css']
 })
 export class GameComponent extends Clue implements OnInit {
@@ -74,7 +75,7 @@ export class GameComponent extends Clue implements OnInit {
   // complete turn
   completeTurn() {
 
-    console.log(`submitting post request to move to complete-turn`)
+    console.log(`submitting post request to complete-turn`)
 
     // update plater position
     this.playerService.httpPostToBackend(`/${this.gameId}/complete-turn?playerName=${this.player.playerName}&charName=${this.charName}`).subscribe(
@@ -129,7 +130,7 @@ export class GameComponent extends Clue implements OnInit {
 
   // show player message
   showPlayerMessage() {
-    
+
     // Get the snackbar DIV
     var x: any = document.getElementById("playerMessage");
 
@@ -138,6 +139,24 @@ export class GameComponent extends Clue implements OnInit {
 
     // After 3 seconds, remove the show class from DIV
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+  }
+
+  // reveal clue card
+  revealClue() {
+    
+    console.log(`submitting post request to reveal clue card`)
+
+    // update plater position
+    this.playerService.httpPostToBackend(`/${this.gameId}/suggestion/reveal?playerName=${this.player.playerName}&charName=${this.charName}&cardName=${this.revealed_clue}`).subscribe(
+      data => {
+        this.gameComponentRefreshData(data);
+      },
+      error => {
+        console.log("ERROR:", error);
+      },
+      () => {
+        console.log("POST for completing turn is completed");
+      })
   }
 
 
