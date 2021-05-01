@@ -7,12 +7,19 @@
     <div id="gameMessage">Game Event: {{ eventMessage }}</div>
     <div id="playerMessage">Player Message: {{ player.eventMessage }}</div>
 
+    <!-- top banner -->
     <div class="actions-banner">
         <div id="action-column">
-            <button id="action-buttons" mat-stroked-button disabled="{{ completeTurnButton.disabled }}"
-                (click)="completeTurn()">complete-turn</button>
-            <button id="action-buttons" mat-stroked-button (click)="showGameMessage()">show game message</button>
-            <button id="action-buttons" mat-stroked-button (click)="showPlayerMessage()">show player message</button>
+            <button id="action-buttons" mat-stroked-button (click)="completeTurn()"
+                disabled="{{ completeTurnButton.disabled }}">
+                complete turn
+            </button>
+            <button id="action-buttons" mat-stroked-button (click)="showGameMessage()">
+                show game message
+            </button>
+            <button id="action-buttons" mat-stroked-button (click)="showPlayerMessage()">
+                show player message
+            </button>
         </div>
         <div id="guess-column">
             <div>
@@ -33,29 +40,92 @@
                 </mat-form-field>
             </div>
             <div>
-                <button id="accuse-button" mat-button (click)="makeAccusation()" cdkFocusInitial>Submit Accusation</button>
-                <button id="suggest-button" mat-button (click)="makeSuggestion()" cdkFocusInitial>Submit Suggestion</button>
+                <button id="accuse-button" mat-button (click)="makeAccusation()" disabled="{{ accuseButton.disabled }}"
+                    cdkFocusInitial>Submit Accusation</button>
+                <button id="suggest-button" mat-button (click)="makeSuggestion()"
+                    disabled="{{ suggestButton.disabled }}" cdkFocusInitial>Submit Suggestion</button>
             </div>
         </div>
     </div>
-    
+
+    <!-- game map -->
     <div class="game-container">
-        <mat-grid-list cols="7" rowHeight="1.6:1" gutterSize="2px">
+        <mat-grid-list cols="7" rowHeight="100px" gutterSize="2px">
             <ng-container *ngFor="let loc of locationButtons">
-                <div *ngIf='loc.label === "empty";else location_button_content'>
-                    <mat-grid-tile>
-                        <button mat-button disabled="true"></button>
-                    </mat-grid-tile>
-                </div>
+                <mat-grid-tile *ngIf='loc.label === "empty";else location_button_content'>
+                </mat-grid-tile>
                 <ng-template #location_button_content>
                     <mat-grid-tile class="location-buttons">
-                        <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{
-                            loc.label }}
+                        <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{ loc.label }}
                         </button>
                     </mat-grid-tile>
                 </ng-template>
             </ng-container>
         </mat-grid-list>
+
+        <!-- game tools bar (right) -->
+        <div class="playerTools">
+            <h4>Your Cards</h4>
+            <div class="tool">
+                <div class="handCardType">
+                    Suspect Cards
+                    <mat-list role="list">
+                        <ng-container *ngFor="let card of player.handCards">
+                            <mat-list-item role="listitem" *ngIf='card.type === card_type_suspect'>
+                                - {{card.name}}
+                            </mat-list-item>
+                        </ng-container>
+                    </mat-list>
+                </div>
+                <div class="handCardType">
+                    Weapon Cards
+                    <mat-list role="list">
+                        <ng-container *ngFor="let card of player.handCards">
+                            <mat-list-item role="listitem" *ngIf='card.type === card_type_weapon'>
+                                - {{card.name}}
+                            </mat-list-item>
+                        </ng-container>
+                    </mat-list>
+                </div>
+                <div class="handCardType">
+                    Room Cards
+                    <mat-list role="list">
+                        <ng-container *ngFor="let card of player.handCards">
+                            <mat-list-item role="listitem" *ngIf='card.type === card_type_room'>
+                                - {{card.name}}
+                            </mat-list-item>
+                        </ng-container>
+                    </mat-list>
+                </div>
+            </div>
+            <h4>Known Cards</h4>
+            <div class="tool">
+                <div class="knownCards">
+                    <mat-selection-list>
+                        Suspects Cards
+                        <mat-list-option *ngFor="let char of characterNamesList">
+                          {{char}}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+                <div class="knownCards">
+                    <mat-selection-list>
+                        Weapon Cards
+                        <mat-list-option *ngFor="let weapon of weaponNamesList">
+                          {{weapon}}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+                <div class="knownCards">
+                    <mat-selection-list>
+                        Room Cards
+                        <mat-list-option *ngFor="let room of roomNamesList">
+                          {{room}}
+                        </mat-list-option>
+                    </mat-selection-list>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>

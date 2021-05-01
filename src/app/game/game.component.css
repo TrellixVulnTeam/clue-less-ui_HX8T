@@ -4,6 +4,7 @@ div.actions-banner {
   height: 100px;
   display: inline-flex;
   position: relative;
+  vertical-align: middle;
   justify-content: space-evenly;
   top: 0;
   width: 100%;
@@ -14,15 +15,24 @@ div.actions-banner {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  vertical-align: middle;
   width: 30%;
   height: 100%;
   /* background-color: #72f06ed5; */
 }
 
 #action-buttons {
-  position: relative;
+  height: 25px;
+  text-align: center;
   background-color: bisque;
 }
+
+/* .button-label {
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(36, 126, 33);
+} */
 
 #guess-column {
   display: flex;
@@ -48,20 +58,6 @@ div.actions-banner {
   background-color: #c99e41ce;
 }
 
-
-/* mat-expansion-panel {
-  z-index: 10000 !important;
-}
-
-mat-expansion-panel-header {
-  background-color: #6ebcf0d5;
-}
-
-mat-panel-title {
-  background-color: bisque;
-  justify-content: center;
-} */
-
 mat-form-field {
   width: 100%;
 }
@@ -81,13 +77,18 @@ mat-option {
 
 
 
-
 /* GAME MAP */
 
+/* game map */
 div.game-container {
+  display: flex;
+  /* background-color: rgb(62, 223, 142); */
+}
+
+div.game-container mat-grid-list {
   display: block;
-  width: 80%;
-  margin: 0% 5%;
+  width: 65%;
+  background-color: #c7d9da;
 }
 
 .location-buttons button {
@@ -96,12 +97,72 @@ div.game-container {
   height: 80px;
   white-space: normal;
   color: #000000;
-  background-color: #74c48cd5;
 }
 
 .location-buttons button:disabled {
   background-color: #e0bfb988;
 }
+
+
+/* player tools bar (right) */
+div.playerTools {
+  display: inline-block;
+  width: 35%;
+  height: 500px;
+  text-align: center;
+  background-color: #52b645d5;
+}
+
+div.playerTools h3 {
+  margin-left: 5%;
+}
+
+div.tool {
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  padding: 2% 0%;
+  background-color: aquamarine;
+}
+
+
+
+div.handCardType {
+  display: inline-block;
+  width: 30%;
+  /* background-color: rgb(151, 255, 66); */
+}
+
+div.handCardType mat-list {
+  /* background-color: rgb(112, 110, 207); */
+}
+
+div.handCardType mat-list mat-list-item {
+  font-size: small;
+  height: auto;
+  margin: 5px;
+  /* background-color: rgb(112, 247, 229); */
+}
+
+
+
+div.knownCards {
+  display: inline-flex;
+}
+
+div.knownCards mat-selection-list {
+  font-size: medium;
+  text-align: center;
+}
+
+div.knownCards mat-selection-list mat-list-option {
+  display: block;
+  font-size: small;
+  text-align: left;
+}
+
+
+
 
 /* The gameMessage - position it at the bottom and in the middle of the screen */
 
@@ -185,7 +246,7 @@ div.game-container {
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-/* Animations to fade the gameMessage in and out */
+/* Animations to fade the gameMessage/playerMessage in and out */
 
 @-webkit-keyframes fadein {
   from {

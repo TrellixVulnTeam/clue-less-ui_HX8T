@@ -11,8 +11,13 @@ export class Clue {
     guessWeapon = ''
     guessRoom = '';
 
+    // set card type constants:
+    card_type_weapon = environment.CARD_TYPE_WEAPON;
+    card_type_room = environment.CARD_TYPE_ROOM;
+    card_type_suspect = environment.CARD_TYPE_SUSPECT;
+
     // Set character constants
-    characterNamesList = [
+    characterNamesList:string[] = [
         environment.CHARACTER_NAME_MRS_WHITE,
         environment.CHARACTER_NAME_MR_GREEN,
         environment.CHARACTER_NAME_MRS_PEACOCK,
@@ -29,7 +34,6 @@ export class Clue {
     char_name_col_mustard = environment.CHARACTER_NAME_COLONEL_MUSTARD;
 
     // Set weapon constants
-
     weaponNamesList = [
         environment.WEAPON_NAME_CANDLESTICK,
         environment.WEAPON_NAME_KNIFE,
