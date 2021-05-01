@@ -22,20 +22,26 @@
             </button>
         </div>
         <div id="guess-column">
-            <div>
-                <mat-form-field appearance="fill">
-                    <mat-select placeholder="Choose Suspect" [(value)]="guessSuspect">
-                        <mat-option *ngFor="let char of characterNamesList" [value]="char">{{char}}</mat-option>
+            <div id="guess-selections">
+                <mat-form-field>
+                    <mat-label>Choose Suspect</mat-label>
+                    <mat-select [(value)]="guessSuspect">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let char of characterNamesList" value="char">{{char}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-select placeholder="Choose Weapon" [(value)]="guessWeapon">
-                        <mat-option *ngFor="let weapon of weaponNamesList" [value]="weapon">{{weapon}}</mat-option>
+                <mat-form-field>
+                    <mat-label>Choose Weapon</mat-label>
+                    <mat-select [(value)]="guessWeapon">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let weapon of weaponNamesList" value="weapon">{{weapon}}</mat-option>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-select placeholder="Choose Room" [(value)]="guessRoom">
-                        <mat-option *ngFor="let room of roomNamesList" [value]="room">{{room}}</mat-option>
+                <mat-form-field>
+                    <mat-label>Choose Room</mat-label>
+                    <mat-select [(value)]="guessRoom">
+                        <mat-option>None</mat-option>
+                        <mat-option *ngFor="let room of roomNamesList" value="room">{{room}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -43,7 +49,7 @@
                 <button id="accuse-button" mat-button (click)="makeAccusation()" disabled="{{ accuseButton.disabled }}"
                     cdkFocusInitial>Submit Accusation</button>
                 <button id="suggest-button" mat-button (click)="makeSuggestion()"
-                    disabled="{{ suggestButton.disabled }}" cdkFocusInitial>Submit Suggestion</button>
+                    disabled="false" cdkFocusInitial>Submit Suggestion</button>
             </div>
         </div>
     </div>
@@ -72,7 +78,7 @@
                     <mat-list role="list">
                         <ng-container *ngFor="let card of player.handCards">
                             <mat-list-item role="listitem" *ngIf='card.type === card_type_suspect'>
-                                - {{card.name}}
+                                <p>- {{card.name}}</p>
                             </mat-list-item>
                         </ng-container>
                     </mat-list>
@@ -82,7 +88,7 @@
                     <mat-list role="list">
                         <ng-container *ngFor="let card of player.handCards">
                             <mat-list-item role="listitem" *ngIf='card.type === card_type_weapon'>
-                                - {{card.name}}
+                                <p>- {{card.name}}</p>
                             </mat-list-item>
                         </ng-container>
                     </mat-list>
@@ -92,7 +98,7 @@
                     <mat-list role="list">
                         <ng-container *ngFor="let card of player.handCards">
                             <mat-list-item role="listitem" *ngIf='card.type === card_type_room'>
-                                - {{card.name}}
+                                <p>- {{card.name}}</p>
                             </mat-list-item>
                         </ng-container>
                     </mat-list>
@@ -103,7 +109,7 @@
                 <div class="knownCards">
                     <mat-selection-list>
                         Suspects Cards
-                        <mat-list-option *ngFor="let char of characterNamesList">
+                        <mat-list-option style="font-size: small;" *ngFor="let char of characterNamesList">
                           {{char}}
                         </mat-list-option>
                     </mat-selection-list>
@@ -111,7 +117,7 @@
                 <div class="knownCards">
                     <mat-selection-list>
                         Weapon Cards
-                        <mat-list-option *ngFor="let weapon of weaponNamesList">
+                        <mat-list-option style="font-size: small;" *ngFor="let weapon of weaponNamesList">
                           {{weapon}}
                         </mat-list-option>
                     </mat-selection-list>
@@ -119,7 +125,7 @@
                 <div class="knownCards">
                     <mat-selection-list>
                         Room Cards
-                        <mat-list-option *ngFor="let room of roomNamesList">
+                        <mat-list-option style="font-size: small;" *ngFor="let room of roomNamesList">
                           {{room}}
                         </mat-list-option>
                     </mat-selection-list>
