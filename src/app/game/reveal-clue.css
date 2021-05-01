@@ -1,14 +1,5 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-div.reveal-clue-main {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: stretch;
-    width: 600px;
-    background-color: aquamarine;
-}
-
 .reveal-card {
     display: flex;
     flex-direction: column;
