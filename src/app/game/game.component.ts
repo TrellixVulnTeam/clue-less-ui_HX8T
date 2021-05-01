@@ -93,7 +93,7 @@ export class GameComponent extends Clue implements OnInit {
   // open reveal clue dialog
   openRevealClueDialog() {
     let dialogRef = this.dialog.open(RevealClueDialog, {
-      data: { playerName: this.playerName },
+      data: { player: this.player, suggestionCards: this.suggestionCards },
     });
   }
 
@@ -185,14 +185,19 @@ export class GameComponent extends Clue implements OnInit {
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./reveal-clue.css']
 })
-export class RevealClueDialog extends GameComponent { 
+export class RevealClueDialog { 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {playerName: string}, public dialogRef: MatDialogRef<RevealClueDialog>, public route: ActivatedRoute, public playerService: PlayerService, public dialog: MatDialog) {
-    super(route, playerService, dialog);
+  revealedClue: any | undefined;
+  player: any | undefined;
+  suggestionCards: any | undefined;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {player: any, suggestionCards: any}) {
+    this.player = data.player;
+    this.suggestionCards = data.suggestionCards;
   }
 
-  close(): void {
-    this.dialogRef.close();
+  revealCard() {
+    // FILL
   }
 
 }

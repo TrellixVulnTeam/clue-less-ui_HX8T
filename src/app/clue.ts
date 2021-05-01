@@ -79,7 +79,7 @@ export class Clue {
     // game data
     gameId: any | undefined;
     eventMessage: string | undefined;
-    suggestion: any | undefined;
+    suggestionCards: any | undefined;
     characters: any | undefined;
     active: boolean | undefined;
 
@@ -173,7 +173,7 @@ export class Clue {
 
         this.eventMessage = data.eventMessage;
         this.active = data.active;
-        this.suggestion = data.suggestionCards;
+        this.suggestionCards = data.suggestionCards;
         this.characters = data.characters;
 
         data.characters.forEach((character: any) => {
