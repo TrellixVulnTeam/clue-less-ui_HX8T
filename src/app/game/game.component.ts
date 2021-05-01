@@ -196,7 +196,7 @@ export class RevealClueDialog {
     this.suggestionCards = data.suggestionCards;
   }
 
-  makeSuggestion() {
+  revealCard() {
     // FILL
   }
 
