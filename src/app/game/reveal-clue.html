@@ -1,0 +1,16 @@
+<h1>Need to figure out how to get Data from GameComponent into RevealClueDialog</h1>
+
+<h3 mat-dialog-title>Please select a clue to reveal ({{playerName}})</h3>
+
+<div class="reveal-clue-main">
+    <h4>Select a card to reveal:</h4>
+    <mat-radio-group class="reveal-card" [(ngModel)]="revealedClue">
+        <mat-radio-button *ngFor="let card of player.handCards" [value]="card.name">
+            {{card.name}}
+        </mat-radio-button>
+    </mat-radio-group>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)=close()>Close</button>
+</div>

@@ -84,6 +84,7 @@ export class Clue {
     active: boolean | undefined;
 
     // player data
+    revealedClue: string | undefined;
     player: any | undefined;
     playerMessage: any | undefined;
     playerName: string | undefined;
