@@ -46,10 +46,15 @@
                 </mat-form-field>
             </div>
             <div>
-                <button id="accuse-button" mat-button (click)="makeAccusation()" disabled="{{ accuseButton.disabled }}"
-                    cdkFocusInitial>Submit Accusation</button>
-                <button id="suggest-button" mat-button (click)="makeSuggestion()"
-                    disabled="false" cdkFocusInitial>Submit Suggestion</button>
+                <button id="accuse-button" mat-button (click)="makeAccusation()" disabled="{{ accuseButton.disabled }}" cdkFocusInitial>
+                    Submit Accusation
+                </button>
+                <button id="suggest-button" mat-button (click)="makeSuggestion()" disabled="false" cdkFocusInitial>
+                    Submit Suggestion
+                </button>
+                <button mat-button (click)="openRevealClueDialog()">
+                    Launch dialog
+                </button>
             </div>
         </div>
     </div>

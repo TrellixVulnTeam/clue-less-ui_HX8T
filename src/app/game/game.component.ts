@@ -18,6 +18,24 @@ export class GameComponent extends Clue implements OnInit {
     this.charName = route.snapshot.paramMap.get('charName');
   }
 
+  // complete turn
+  completeTurn() {
+
+    console.log(`submitting post request to complete-turn`)
+
+    // update plater position
+    this.playerService.httpPostToBackend(`/${this.gameId}/complete-turn?playerName=${this.player.playerName}&charName=${this.charName}`).subscribe(
+      data => {
+        this.gameComponentRefreshData(data);
+      },
+      error => {
+        console.log("ERROR:", error);
+      },
+      () => {
+        console.log("POST for completing turn is completed");
+      })
+  };
+
   // make suggestion 
   makeSuggestion() {
 
@@ -72,23 +90,12 @@ export class GameComponent extends Clue implements OnInit {
       })
   };
 
-  // complete turn
-  completeTurn() {
-
-    console.log(`submitting post request to complete-turn`)
-
-    // update plater position
-    this.playerService.httpPostToBackend(`/${this.gameId}/complete-turn?playerName=${this.player.playerName}&charName=${this.charName}`).subscribe(
-      data => {
-        this.gameComponentRefreshData(data);
-      },
-      error => {
-        console.log("ERROR:", error);
-      },
-      () => {
-        console.log("POST for completing turn is completed");
-      })
-  };
+  // open reveal clue dialog
+  openRevealClueDialog() {
+    let dialogRef = this.dialog.open(RevealClueDialog, {
+      data: { playerName: this.playerName },
+    });
+  }
 
   // custom refresh data actions for game-component
   gameComponentRefreshData(data: any) {
@@ -143,7 +150,7 @@ export class GameComponent extends Clue implements OnInit {
 
   // reveal clue card
   revealClue() {
-    
+
     console.log(`submitting post request to reveal clue card`)
 
     // update plater position
@@ -170,4 +177,22 @@ export class GameComponent extends Clue implements OnInit {
         this.gameComponentRefreshData(data);
       });
   }
+}
+
+@Component({
+  selector: 'reveal-clue',
+  templateUrl: 'reveal-clue.html',
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./reveal-clue.css']
+})
+export class RevealClueDialog extends GameComponent { 
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: {playerName: string}, public dialogRef: MatDialogRef<RevealClueDialog>, public route: ActivatedRoute, public playerService: PlayerService, public dialog: MatDialog) {
+    super(route, playerService, dialog);
+  }
+
+  close(): void {
+    this.dialogRef.close();
+  }
+
 }
