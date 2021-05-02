@@ -3,6 +3,7 @@ import { PlayerService } from '../player-service/player.service';
 import { ActivatedRoute } from '@angular/router';
 import { Clue } from '../clue';
 import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'game',
@@ -93,7 +94,41 @@ export class GameComponent extends Clue implements OnInit {
   // open reveal clue dialog
   openRevealClueDialog() {
     let dialogRef = this.dialog.open(RevealClueDialog, {
-      data: { player: this.player, suggestionCards: this.suggestionCards },
+      data: { gameId: this.gameId, player: this.player, suggestionCards: this.suggestionCards },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.playerService.httpGetToBackend(`/${this.gameId}`).subscribe(
+        (data:any) => {
+          this.gameComponentRefreshData(data);
+        },
+        (error:any) => {
+          console.log("ERROR:", error);
+        },
+        () => {
+          console.log("GET for for game data completed");
+        })
+    });
+  }
+
+  // open reveal clue dialog
+  openAcceptClueDialog() {
+
+    let dialogRef = this.dialog.open(AcceptClueDialog, {
+      data: { gameId: this.gameId, player: this.player },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.playerService.httpGetToBackend(`/${this.gameId}`).subscribe(
+        (data:any) => {
+          this.gameComponentRefreshData(data);
+        },
+        (error:any) => {
+          console.log("ERROR:", error);
+        },
+        () => {
+          console.log("GET for for game data completed");
+        })
     });
   }
 
@@ -118,8 +153,6 @@ export class GameComponent extends Clue implements OnInit {
         this.refreshData(data);
       }
     })
-
-
 
   }
 
@@ -148,24 +181,6 @@ export class GameComponent extends Clue implements OnInit {
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
   }
 
-  // reveal clue card
-  revealClue() {
-
-    console.log(`submitting post request to reveal clue card`)
-
-    // update plater position
-    this.playerService.httpPostToBackend(`/${this.gameId}/suggestion/reveal?playerName=${this.player.playerName}&charName=${this.charName}&cardName=${this.revealed_clue}`).subscribe(
-      data => {
-        this.gameComponentRefreshData(data);
-      },
-      error => {
-        console.log("ERROR:", error);
-      },
-      () => {
-        console.log("POST for completing turn is completed");
-      })
-  }
-
 
   // start page
   ngOnInit() {
@@ -185,19 +200,76 @@ export class GameComponent extends Clue implements OnInit {
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./reveal-clue.css']
 })
-export class RevealClueDialog { 
+export class RevealClueDialog {
 
-  revealedClue: any | undefined;
-  player: any | undefined;
-  suggestionCards: any | undefined;
+  revealClueData: any | undefined;
+  revealedClue : any | undefined;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {player: any, suggestionCards: any}) {
-    this.player = data.player;
-    this.suggestionCards = data.suggestionCards;
+  constructor(private dialogRef: MatDialogRef<RevealClueDialog>, public playerService: PlayerService, @Inject(MAT_DIALOG_DATA) public data:any) {
+
+    this.revealClueData = data;
+
+    dialogRef.disableClose = true;
+
+    this.playerService.setPlayerService(data.gameId, data.player.playerName);
   }
 
-  revealCard() {
-    // FILL
+  // reveal clue card
+  revealClue() {
+
+    console.log(`submitting post request to reveal clue card`)
+
+    // update plater position
+    this.playerService.httpPostToBackend(`/${this.revealClueData.gameId}/suggestion/reveal?playerName=${this.revealClueData.player.playerName}&charName=${this.revealClueData.player.characterName}&cardName=${this.revealedClue}`).subscribe(
+      (data:any) => {
+        this.dialogRef.close()
+      },
+      (error:any) => {
+        console.log("ERROR:", error);
+      },
+      () => {
+        console.log("POST for revealing clue is completed");
+      })
+  }
+
+}
+
+@Component({
+  selector: 'accept-clue',
+  templateUrl: 'accept-clue.html',
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./accept-clue.css']
+})
+export class AcceptClueDialog {
+
+  acceptClueData: any| undefined;
+
+  constructor(private dialogRef: MatDialogRef<AcceptClueDialog>, public playerService: PlayerService, @Inject(MAT_DIALOG_DATA) public data:any) {
+
+    this.acceptClueData = data;
+
+    dialogRef.disableClose = true;
+
+    this.playerService.setPlayerService(data.gameId, data.player.playerName);
+  }
+
+  // accept clue card
+  acceptClue() {
+
+    console.log(`submitting post request to accept clue card`)
+    console.log(`gameId: ${this.acceptClueData.gameId} and playerName: ${this.acceptClueData.player.playerName}`)
+
+    // accept revealed clue
+    this.playerService.httpPostToBackend(`/${this.acceptClueData.gameId}/suggestion/accept?playerName=${this.acceptClueData.player.playerName}&charName=${this.acceptClueData.player.characterName}`).subscribe(
+      (data:any) => {
+        this.dialogRef.close()
+      },
+      (error:any) => {
+        console.log("ERROR:", error);
+      },
+      () => {
+        console.log("POST for accepting clue is completed");
+      })
   }
 
 }

@@ -11,10 +11,7 @@ export class Clue {
     guessWeapon:string = ''
     guessRoom:string = '';
 
-    // set revealed clue variable
-    revealed_clue = ''
-
-    // set card type constants:
+    // set card type constants
     card_type_weapon = environment.CARD_TYPE_WEAPON;
     card_type_room = environment.CARD_TYPE_ROOM;
     card_type_suspect = environment.CARD_TYPE_SUSPECT;
@@ -132,6 +129,10 @@ export class Clue {
     completeTurnButton = new ClueGameButton('complete-turn');
     suggestButton = new ClueGameButton('suggest');
     accuseButton = new ClueGameButton('accuse');
+    openRevealClueDialogButton = new ClueGameButton('reveal-clue');
+    openAcceptClueDialogButton = new ClueGameButton('accept-clue');
+    acceptClueNotification = ""
+    
 
     // set player state constants
     player_state_wait: string = environment.PLAYER_STATE_WAIT;
@@ -193,18 +194,36 @@ export class Clue {
     updateEnabledButtons() {
         // complete-turn button
         if (this.player.state == this.player_state_complete_turn) {
-            // console.log(`enabling complete-turn button`)
             this.completeTurnButton.enable();
         } else {
-            // console.log(`disabling complete-turn button`)
             this.completeTurnButton.disable();
         }
 
         // TODO: make-accusation button
         // if it's your turn
 
-        // TODO: make-suggestion button
-        // if state is 'suggest' OR if wasMovedToRoom is TRUE
+        // make-suggestion button
+        if (this.player.state == this.player_state_suggest) {
+            this.suggestButton.enable();
+        } else {
+            this.suggestButton.disable();
+        }
+
+        // reveal-clue button
+        if (this.player.state == this.player_state_reveal) {
+            this.openRevealClueDialogButton.enable();
+        } else {
+            this.openRevealClueDialogButton.disable();
+        }
+
+        // accept-clue button
+        if (this.player.state == this.player_state_accept_reveal) {
+            this.openAcceptClueDialogButton.enable();
+            this.acceptClueNotification = "1";
+        } else {
+            this.openAcceptClueDialogButton.disable();
+            this.acceptClueNotification = "";
+        }
 
         // location buttons
         for (let locButton of this.locationButtons) {

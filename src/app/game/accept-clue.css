@@ -1,0 +1,9 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+mat-divider {
+    margin: 20px 0;
+}
+
+#accept-clue-button {
+    background-color: antiquewhite;
+}

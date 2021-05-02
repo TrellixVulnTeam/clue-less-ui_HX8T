@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlayerService } from './player-service/player.service';
-import { GameComponent, RevealClueDialog } from './game/game.component';
+import { AcceptClueDialog, GameComponent, RevealClueDialog } from './game/game.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { WaitRoomComponent } from './wait-room/wait-room.component';
@@ -17,7 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     GameComponent,
     LoginComponent,
     WaitRoomComponent,
-    RevealClueDialog
+    RevealClueDialog,
+    AcceptClueDialog
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PlayerService,
     LoginComponent
   ],
-  entryComponents: [RevealClueDialog],
+  entryComponents: [
+    RevealClueDialog,
+    AcceptClueDialog
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

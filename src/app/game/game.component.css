@@ -22,8 +22,10 @@ div.actions-banner {
 }
 
 #action-buttons {
-  height: 25px;
-  text-align: center;
+  height: 25%;
+  font-size: small;
+  line-height: 50%;
+  justify-content: center;
   background-color: bisque;
 }
 
@@ -72,17 +74,15 @@ mat-option {
   color: #000000;
   background-color: rgb(150, 159, 207);
   font-size: smaller;
-  /* z-index: 10004 !important; */
 }
 
 #accuse-button {
   background-color: #c95541ce;
 }
 
-#suggest-button {
+.normal-button {
   background-color: #c99e41ce;
 }
-
 
 
 
@@ -102,16 +102,34 @@ div.game-container mat-grid-list {
 }
 
 .location-buttons button {
+  position: absolute;
   font-size: 70%;
+  line-height: 100%;
   width: 120px;
   height: 80px;
-  white-space: normal;
+  white-space: pre-wrap;
   color: #000000;
   background-color: aquamarine;
 }
 
 .location-buttons button:disabled {
   background-color: #e0bfb988;
+}
+
+mat-grid-tile {
+  background-color: indigo;
+}
+
+div.character-piece {
+  position: relative;
+  display: block;
+  text-align: center;
+  top: -40%;
+  margin: 1px;
+  height: auto;
+  width: 100%;
+  font-size: small;
+  background-color: rgb(162, 0, 255);
 }
 
 

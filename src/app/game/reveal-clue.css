@@ -3,5 +3,14 @@
 .reveal-card {
     display: flex;
     flex-direction: column;
-    background-color: rgb(92, 226, 59);
+    margin-bottom: 20px;
+    /* background-color: rgb(92, 226, 59); */
+}
+
+mat-divider {
+    margin: 20px 0;
+}
+
+#reveal-clue-button {
+    background-color: antiquewhite;
 }
