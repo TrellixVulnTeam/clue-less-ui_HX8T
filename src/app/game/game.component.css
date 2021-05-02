@@ -13,7 +13,7 @@ div.actions-banner {
   top: 0;
   width: 100%;
   border-radius: 5px;
-  background-color: #4c5c64d5;
+  background-color: #505fa5d5;
 }
 
 #action-column {
@@ -85,7 +85,7 @@ mat-option {
 }
 
 #accuse-button {
-  background-color: #c95541ce;
+  background-color: #da5746;
 }
 
 .normal-button {
