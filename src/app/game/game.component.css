@@ -116,20 +116,21 @@ div.game-container mat-grid-list {
   background-color: #e0bfb988;
 }
 
-mat-grid-tile {
+/* mat-grid-tile {
   background-color: indigo;
-}
+} */
 
 div.character-piece {
   position: relative;
   display: block;
   text-align: center;
   top: -40%;
-  margin: 1px;
+  padding: 1px;
+  margin: 2px;
   height: auto;
   width: 100%;
   font-size: small;
-  background-color: rgb(162, 0, 255);
+  background-color: rgb(255, 255, 255);
 }
 
 

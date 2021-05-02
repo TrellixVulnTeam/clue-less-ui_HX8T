@@ -205,7 +205,9 @@ export class Clue {
         // make-suggestion button
         if (this.player.state == this.player_state_suggest) {
             this.suggestButton.enable();
-        } else if ( this.player.wasMovedToRoom || this.player.wasMovedToRoom == "true" ) { // if player was previously moved to room
+        } else if ( 
+            (this.player.state == this.player_state_move) &&
+            (this.player.wasMovedToRoom || this.player.wasMovedToRoom == "true") ) { // if player was previously moved to room
             this.suggestButton.enable();
         } else {
             this.suggestButton.disable();
