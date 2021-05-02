@@ -1,8 +1,8 @@
 <h3 mat-dialog-title>Please select a clue to reveal</h3>
 
 <mat-radio-group class="reveal-card" [(ngModel)]="revealedClue">
-    <ng-container *ngFor="let hCard of player.handCards">
-        <ng-container *ngFor="let sCard of suggestionCards">
+    <ng-container *ngFor="let hCard of revealClueData.player.handCards">
+        <ng-container *ngFor="let sCard of revealClueData.suggestionCards">
             <mat-radio-button *ngIf='hCard.name === sCard.name' [value]="hCard.name">
                 {{hCard.name}}
             </mat-radio-button>
@@ -11,5 +11,5 @@
 </mat-radio-group>
 <mat-divider></mat-divider>
 <div mat-dialog-actions>
-    <button mat-button mat-dialog-close (click)=revealCard()>Reveal Clue: {{revealedClue}}</button>
+    <button id="reveal-clue-button" mat-button mat-dialog-close (click)=revealClue()>Reveal Clue: {{revealedClue}}</button>
 </div>

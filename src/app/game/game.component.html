@@ -25,23 +25,23 @@
             <div id="guess-selections">
                 <mat-form-field>
                     <mat-label>Choose Suspect</mat-label>
-                    <mat-select [(value)]="guessSuspect">
+                    <mat-select [(ngModel)]="guessSuspect">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let char of characterNamesList" value="char">{{char}}</mat-option>
+                        <mat-option *ngFor="let char of characterNamesList" [value]="char">{{char}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Choose Weapon</mat-label>
-                    <mat-select [(value)]="guessWeapon">
+                    <mat-select [(ngModel)]="guessWeapon">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let weapon of weaponNamesList" value="weapon">{{weapon}}</mat-option>
+                        <mat-option *ngFor="let weapon of weaponNamesList" [value]="weapon">{{weapon}}</mat-option>
                     </mat-select>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Choose Room</mat-label>
-                    <mat-select [(value)]="guessRoom">
+                    <mat-select [(ngModel)]="guessRoom">
                         <mat-option>None</mat-option>
-                        <mat-option *ngFor="let room of roomNamesList" value="room">{{room}}</mat-option>
+                        <mat-option *ngFor="let room of roomNamesList" [value]="room">{{room}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
@@ -49,11 +49,14 @@
                 <button id="accuse-button" mat-button (click)="makeAccusation()" disabled="{{ accuseButton.disabled }}" cdkFocusInitial>
                     Submit Accusation
                 </button>
-                <button id="suggest-button" mat-button (click)="makeSuggestion()" disabled="false" cdkFocusInitial>
+                <button class="normal-button" mat-button (click)="makeSuggestion()" disabled="{{ suggestButton.disabled }}" cdkFocusInitial>
                     Submit Suggestion
                 </button>
-                <button mat-button (click)="openRevealClueDialog()">
-                    Launch dialog
+                <button class="normal-button" mat-button (click)="openRevealClueDialog()" disabled="{{ openRevealClueDialogButton.disabled }}">
+                    Reveal Clue
+                </button>
+                <button class="normal-button" mat-button (click)="openAcceptClueDialog()" disabled="{{ openAcceptClueDialogButton.disabled }}" matBadge="{{ acceptClueNotification }}">
+                    Accept Clue
                 </button>
             </div>
         </div>
@@ -67,8 +70,20 @@
                 </mat-grid-tile>
                 <ng-template #location_button_content>
                     <mat-grid-tile class="location-buttons">
-                        <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{ loc.label }}
-                        </button>
+                        
+                        <!-- place location -->
+                        <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{ loc.label }}</button>
+
+                        <!-- place character -->
+                        <ng-container *ngFor="let char of characters">
+
+                            <!-- loop through each character and place in location if currently there -->
+                            <div *ngIf='char.currLocation.name === loc.label' class="character-piece">
+                                {{char.characterName}}
+                            </div>
+
+                        </ng-container>
+
                     </mat-grid-tile>
                 </ng-template>
             </ng-container>

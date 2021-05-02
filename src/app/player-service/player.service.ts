@@ -35,6 +35,10 @@ export class PlayerService {
       switchMap(() => httpClient.get<any>(`${gamesEndpoint}/${this.gameId}`, httpOptions))
     );
   }
+
+  public httpGetToBackend(context: string, payload?: {}, params?: any): Observable<any> {
+    return this.httpClient.get(`${gamesEndpoint}${context}`, httpOptions)
+  }
   
   public httpPostToBackend(context: string, payload?: {}, params?: any): Observable<any> {
     return this.httpClient.post(`${gamesEndpoint}${context}`, payload, httpOptions)
