@@ -206,6 +206,22 @@ export class Clue {
         // TODO: make-suggestion button
         // if state is 'suggest' OR if wasMovedToRoom is TRUE
 
+        if (this.player.state == this.player_state_suggest) {
+            // console.log(`enabling makeSuggestionButton`)
+            this.makeSuggestionButton.enable();
+        } else {
+            // console.log(`disabling make-suggestion button`)
+            this.makeSuggestionButton.disable();
+        }
+
+        if (suggester.setMovedToRoom(true))
+            // console.log(`enabling makeSuggestionButton`)
+            this.makeSuggestionButton.enable();
+        } else {
+            // console.log(`disabling make-suggestion button`)
+            this.makeSuggestionButton.disable();
+        }
+
         // location buttons
         for (let locButton of this.locationButtons) {
             if (this.player.state == 'move') { // begin enabling possible location buttons if in 'move' state
