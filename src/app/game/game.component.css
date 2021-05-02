@@ -1,5 +1,9 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+body {
+  background-color: snow;
+}
+
 div.actions-banner {
   height: 110px;
   display: flex;
@@ -8,6 +12,7 @@ div.actions-banner {
   justify-content: space-evenly;
   top: 0;
   width: 100%;
+  border-radius: 5px;
   background-color: #4c5c64d5;
 }
 
@@ -16,7 +21,8 @@ div.actions-banner {
   flex-direction: column;
   justify-content: space-evenly;
   vertical-align: middle;
-  width: 30%;
+  margin-left: 5px;
+  width: 20%;
   height: 100%;
   /* background-color: #72f06ed5; */
 }
@@ -32,10 +38,12 @@ div.actions-banner {
 
 
 #guess-column {
-  width: 70%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-right: 5px;
+  font-size: 80%;
   /* background-color: #ff6123d5; */
 }
 
@@ -81,7 +89,7 @@ mat-option {
 }
 
 .normal-button {
-  background-color: #c99e41ce;
+  background-color: #8ee274ce;
 }
 
 
@@ -92,18 +100,20 @@ mat-option {
 /* game map */
 div.game-container {
   display: flex;
+  padding-top: 10px;
   /* background-color: rgb(62, 223, 142); */
 }
 
 div.game-container mat-grid-list {
   display: block;
   width: 65%;
-  background-color: #c7d9da;
+  border-radius: 10px;
+  background-color: rgb(163, 199, 223);
 }
 
 .location-buttons button {
   position: absolute;
-  font-size: 70%;
+  font-size: 11px;
   line-height: 100%;
   width: 120px;
   height: 80px;
@@ -113,24 +123,30 @@ div.game-container mat-grid-list {
 }
 
 .location-buttons button:disabled {
-  background-color: #e0bfb988;
+  background-color: #e2b0b0;
 }
 
 /* mat-grid-tile {
-  background-color: indigo;
+  overflow: visible;
 } */
+
+#charactersOnMapBlock {
+  position: absolute;
+  display: block;
+  right: 0px;
+  width: 80px;
+  height: 100%;
+  /* background-color: aquamarine; */
+}
 
 div.character-piece {
   position: relative;
   display: block;
+  margin: 2px auto 0px auto;
   text-align: center;
-  top: -40%;
-  padding: 1px;
-  margin: 2px;
-  height: auto;
-  width: 100%;
-  font-size: small;
-  background-color: rgb(255, 255, 255);
+  border-radius: 3px;
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, 0.699);
 }
 
 
@@ -138,13 +154,18 @@ div.character-piece {
 div.playerTools {
   display: inline-block;
   width: 35%;
-  height: 500px;
+  height: auto;
   text-align: center;
-  background-color: #52b645d5;
 }
 
-div.playerTools h3 {
-  margin-left: 5%;
+div.playerTools h4 {
+  /* background-color: #c7d9da; */
+  margin: 10px 0px 0px 0px;
+}
+
+div.playerTools h5 {
+  /* background-color: #c7d9da; */
+  margin: 0px 0px 0px 0px;
 }
 
 div.tool {
@@ -152,7 +173,14 @@ div.tool {
   align-content: center;
   justify-content: space-evenly;
   padding: 2% 0%;
-  background-color: aquamarine;
+  margin-bottom: 5px;
+  /* background-color: aquamarine; */
+}
+
+mat-divider {
+  position: relative;
+  width: 90%;
+  left: 5%;
 }
 
 
@@ -160,18 +188,20 @@ div.tool {
 div.handCardType {
   display: inline-block;
   width: 30%;
-  /* background-color: rgb(151, 255, 66); */
+  padding: 15px 0px;
+  border-radius: 5px;
+  background-color: rgb(163, 199, 223);
 }
 
 div.handCardType mat-list {
   text-align: left;
+  padding-bottom: 5px;
+  /* background-color: #8c00ff88; */
 }
 
-p {
-  font-size: small;
-  height: auto;
-  margin: 5px;
-  /* background-color: rgb(112, 247, 229); */
+div.handCardType mat-list-item {
+  height: 30px !important;
+  font-size: 13px !important;
 }
 
 
@@ -183,11 +213,20 @@ div.knownCards {
 div.knownCards mat-selection-list {
   font-size: medium;
   text-align: center;
+  padding: 15px 0px;
+  border-radius: 5px;
+  background-color: rgb(163, 199, 223);
+}
+
+div.knownCards mat-selection-list h5 {
+  margin-bottom: 10px;
 }
 
 div.knownCards mat-selection-list mat-list-option {
   display: block;
-  text-align: left;
+  text-align: right;
+  font-size: 13px !important;
+  height: 30px !important;
 }
 
 

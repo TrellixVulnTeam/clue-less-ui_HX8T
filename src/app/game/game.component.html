@@ -64,25 +64,24 @@
 
     <!-- game map -->
     <div class="game-container">
-        <mat-grid-list cols="7" rowHeight="100px" gutterSize="2px">
+        <mat-grid-list cols="7" rowHeight="90px" gutterSize="0px">
             <ng-container *ngFor="let loc of locationButtons">
                 <mat-grid-tile *ngIf='loc.label === "empty";else location_button_content'>
                 </mat-grid-tile>
                 <ng-template #location_button_content>
                     <mat-grid-tile class="location-buttons">
-                        
                         <!-- place location -->
                         <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{ loc.label }}</button>
 
-                        <!-- place character -->
-                        <ng-container *ngFor="let char of characters">
-
-                            <!-- loop through each character and place in location if currently there -->
-                            <div *ngIf='char.currLocation.name === loc.label' class="character-piece">
-                                {{char.characterName}}
-                            </div>
-
-                        </ng-container>
+                        <!-- place characters on grid -->
+                        <div id="charactersOnMapBlock"> 
+                            <ng-container *ngFor="let char of characters"> 
+                                <!-- loop through each character and place in location if currently there -->
+                                <div *ngIf='char.currLocation.name === loc.label' class="character-piece">
+                                    {{char.characterName}}
+                                </div>
+                            </ng-container>
+                        </div>
 
                     </mat-grid-tile>
                 </ng-template>
@@ -94,41 +93,42 @@
             <h4>Your Cards</h4>
             <div class="tool">
                 <div class="handCardType">
-                    Suspect Cards
+                    <h5>Suspect Cards</h5>
                     <mat-list role="list">
                         <ng-container *ngFor="let card of player.handCards">
                             <mat-list-item role="listitem" *ngIf='card.type === card_type_suspect'>
-                                <p>- {{card.name}}</p>
+                                {{card.name}}
                             </mat-list-item>
                         </ng-container>
                     </mat-list>
                 </div>
                 <div class="handCardType">
-                    Weapon Cards
+                    <h5>Weapon Cards</h5>
                     <mat-list role="list">
                         <ng-container *ngFor="let card of player.handCards">
                             <mat-list-item role="listitem" *ngIf='card.type === card_type_weapon'>
-                                <p>- {{card.name}}</p>
+                                {{card.name}}
                             </mat-list-item>
                         </ng-container>
                     </mat-list>
                 </div>
                 <div class="handCardType">
-                    Room Cards
+                    <h5>Room Cards</h5>
                     <mat-list role="list">
                         <ng-container *ngFor="let card of player.handCards">
                             <mat-list-item role="listitem" *ngIf='card.type === card_type_room'>
-                                <p>- {{card.name}}</p>
+                                {{card.name}}
                             </mat-list-item>
                         </ng-container>
                     </mat-list>
                 </div>
             </div>
+            <mat-divider></mat-divider>
             <h4>Known Cards</h4>
             <div class="tool">
                 <div class="knownCards">
                     <mat-selection-list>
-                        Suspects Cards
+                        <h5>Suspect Cards</h5>
                         <mat-list-option style="font-size: small;" *ngFor="let char of characterNamesList">
                           {{char}}
                         </mat-list-option>
@@ -136,7 +136,7 @@
                 </div>
                 <div class="knownCards">
                     <mat-selection-list>
-                        Weapon Cards
+                        <h5>Weapon Cards</h5>
                         <mat-list-option style="font-size: small;" *ngFor="let weapon of weaponNamesList">
                           {{weapon}}
                         </mat-list-option>
@@ -144,7 +144,7 @@
                 </div>
                 <div class="knownCards">
                     <mat-selection-list>
-                        Room Cards
+                        <h5>Room Cards</h5>
                         <mat-list-option style="font-size: small;" *ngFor="let room of roomNamesList">
                           {{room}}
                         </mat-list-option>
