@@ -205,6 +205,8 @@ export class Clue {
         // make-suggestion button
         if (this.player.state == this.player_state_suggest) {
             this.suggestButton.enable();
+        } else if ( "dummy" == "todo") { // TODO check if player was previously moved to room
+            this.suggestButton.enable();
         } else {
             this.suggestButton.disable();
         }
