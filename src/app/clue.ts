@@ -209,6 +209,7 @@ export class Clue {
             this.accuseButton.disable();
         }
     
+        
         // make-suggestion button
         if (this.player.state == this.player_state_suggest) {
             this.suggestButton.enable();
