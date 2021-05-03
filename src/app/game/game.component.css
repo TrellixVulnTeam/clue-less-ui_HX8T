@@ -1,19 +1,19 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-body {
+/* body {
   background-color: snow;
-}
+} */
 
 div.actions-banner {
   height: 110px;
   display: flex;
-  position: relative;
+  /* position: relative; */
   vertical-align: middle;
   justify-content: space-evenly;
   top: 0;
   width: 100%;
   border-radius: 5px;
-  background-color: #505fa5d5;
+  background-color: #889cf73b;
 }
 
 #action-column {
@@ -47,20 +47,15 @@ div.actions-banner {
   /* background-color: #ff6123d5; */
 }
 
-#guess-column div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
 #guess-column div button {
   display: inline-block;
 }
 
-#guess-selections {
-  display: inline-flex;
+.guess-selections {
+  display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  justify-content: space-evenly;
+  /* background-color: #49baf3d5; */
 }
 
 mat-form-field {
@@ -80,7 +75,7 @@ mat-select {
 mat-option {
   position: relative;
   color: #000000;
-  background-color: rgb(150, 159, 207);
+  background-color: rgba(150, 159, 207, 0.801);
   font-size: smaller;
 }
 

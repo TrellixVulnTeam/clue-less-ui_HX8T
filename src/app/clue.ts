@@ -7,9 +7,9 @@ import { PlayerService } from './player-service/player.service';
 export class Clue {
 
     // set guessing variables
-    guessSuspect:string = ''
-    guessWeapon:string = ''
-    guessRoom:string = '';
+    guessSuspect = ''
+    guessWeapon = ''
+    guessRoom = '';
 
     // set card type constants
     card_type_weapon = environment.CARD_TYPE_WEAPON;
@@ -17,7 +17,7 @@ export class Clue {
     card_type_suspect = environment.CARD_TYPE_SUSPECT;
 
     // Set character constants
-    characterNamesList = [
+    characterNamesList:string[] = [
         environment.CHARACTER_NAME_MRS_WHITE,
         environment.CHARACTER_NAME_MR_GREEN,
         environment.CHARACTER_NAME_MRS_PEACOCK,
@@ -34,7 +34,7 @@ export class Clue {
     char_name_col_mustard = environment.CHARACTER_NAME_COLONEL_MUSTARD;
 
     // Set weapon constants
-    weaponNamesList = [
+    weaponNamesList:string[] = [
         environment.WEAPON_NAME_CANDLESTICK,
         environment.WEAPON_NAME_KNIFE,
         environment.WEAPON_NAME_LEADPIPE,
@@ -50,7 +50,7 @@ export class Clue {
     weapon_name_wrench = environment.WEAPON_NAME_WRENCH;
 
     // Set room constants
-    roomNamesList = [
+    roomNamesList:string[] = [
         environment.LOCATION_NAME_BALL_ROOM,
         environment.LOCATION_NAME_BILLIARD_ROOM,
         environment.LOCATION_NAME_CONSERVATORY,
