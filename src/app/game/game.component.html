@@ -1,159 +1,158 @@
-<!DOCTYPE html>
-<html>
+<!-- snackbar game message -->
+<div id="gameMessage">Game Event: {{ eventMessage }}</div>
+<div id="playerMessage">Player Message: {{ player.eventMessage }}</div>
 
-<body>
-
-    <!-- snackbar game message -->
-    <div id="gameMessage">Game Event: {{ eventMessage }}</div>
-    <div id="playerMessage">Player Message: {{ player.eventMessage }}</div>
-
-    <!-- top banner -->
-    <div class="actions-banner">
-        <div id="action-column">
-            <button id="action-buttons" mat-stroked-button (click)="completeTurn()"
-                disabled="{{ completeTurnButton.disabled }}">
-                complete turn
-            </button>
-            <button id="action-buttons" mat-stroked-button (click)="showGameMessage()">
-                show game message
-            </button>
-            <button id="action-buttons" mat-stroked-button (click)="showPlayerMessage()">
-                show player message
-            </button>
+<!-- top banner -->
+<div class="actions-banner">
+    <div id="action-column">
+        <button id="action-buttons" mat-stroked-button (click)="completeTurn()"
+            disabled="{{ completeTurnButton.disabled }}">
+            complete turn
+        </button>
+        <button id="action-buttons" mat-stroked-button (click)="showGameMessage()">
+            show game message
+        </button>
+        <button id="action-buttons" mat-stroked-button (click)="showPlayerMessage()">
+            show player message
+        </button>
+    </div>
+    <div id="guess-column">
+        <div class="guess-selections">
+            <mat-form-field appearance="fill">
+                <mat-label>Choose Suspect</mat-label>
+                <mat-select [(value)]="guessSuspect">
+                    <ng-container *ngFor="let char of characterNamesList">
+                        <mat-option value="{{char}}">{{char}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose Weapon</mat-label>
+                <mat-select [(value)]="guessWeapon">
+                    <ng-container *ngFor="let weapon of weaponNamesList">
+                        <mat-option value="{{weapon}}">{{weapon}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Choose Room</mat-label>
+                <mat-select [(value)]="guessRoom">
+                    <ng-container *ngFor="let room of roomNamesList">
+                        <mat-option value="{{room}}">{{room}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
         </div>
-        <div id="guess-column">
-            <div id="guess-selections">
-                <mat-form-field>
-                    <mat-label>Choose Suspect</mat-label>
-                    <mat-select [(ngModel)]="guessSuspect">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let char of characterNamesList" [value]="char">{{char}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Choose Weapon</mat-label>
-                    <mat-select [(ngModel)]="guessWeapon">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let weapon of weaponNamesList" [value]="weapon">{{weapon}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Choose Room</mat-label>
-                    <mat-select [(ngModel)]="guessRoom">
-                        <mat-option>None</mat-option>
-                        <mat-option *ngFor="let room of roomNamesList" [value]="room">{{room}}</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div>
-                <button id="accuse-button" mat-button (click)="makeAccusation()" disabled="{{ accuseButton.disabled }}" cdkFocusInitial>
-                    Submit Accusation
-                </button>
-                <button class="normal-button" mat-button (click)="makeSuggestion()" disabled="{{ suggestButton.disabled }}" cdkFocusInitial>
-                    Submit Suggestion
-                </button>
-                <button class="normal-button" mat-button (click)="openRevealClueDialog()" disabled="{{ openRevealClueDialogButton.disabled }}">
-                    Reveal Clue
-                </button>
-                <button class="normal-button" mat-button (click)="openAcceptClueDialog()" disabled="{{ openAcceptClueDialogButton.disabled }}" matBadge="{{ acceptClueNotification }}">
-                    Accept Clue
-                </button>
-            </div>
+        <div class="guess-selections">
+            <button id="accuse-button" mat-button (click)="makeAccusation()" disabled="{{ accuseButton.disabled }}"
+                cdkFocusInitial>
+                Submit Accusation
+            </button>
+            <button class="normal-button" mat-button (click)="makeSuggestion()" disabled="{{ suggestButton.disabled }}"
+                cdkFocusInitial>
+                Submit Suggestion
+            </button>
+            <button class="normal-button" mat-button (click)="openRevealClueDialog()"
+                disabled="{{ openRevealClueDialogButton.disabled }}">
+                Reveal Clue
+            </button>
+            <button class="normal-button" mat-button (click)="openAcceptClueDialog()"
+                disabled="{{ openAcceptClueDialogButton.disabled }}" matBadge="{{ acceptClueNotification }}">
+                Accept Clue
+            </button>
         </div>
     </div>
+</div>
 
-    <!-- game map -->
-    <div class="game-container">
-        <mat-grid-list cols="7" rowHeight="90px" gutterSize="0px">
-            <ng-container *ngFor="let loc of locationButtons">
-                <mat-grid-tile *ngIf='loc.label === "empty";else location_button_content'>
+<!-- game map -->
+<div class="game-container">
+    <mat-grid-list cols="7" rowHeight="90px" gutterSize="0px">
+        <ng-container *ngFor="let loc of locationButtons">
+            <mat-grid-tile *ngIf='loc.label === "empty";else location_button_content'>
+            </mat-grid-tile>
+            <ng-template #location_button_content>
+                <mat-grid-tile class="location-buttons">
+                    <!-- place location -->
+                    <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{
+                        loc.label }}</button>
+
+                    <!-- place characters on grid -->
+                    <div id="charactersOnMapBlock">
+                        <ng-container *ngFor="let char of characters">
+                            <!-- loop through each character and place in location if currently there -->
+                            <div *ngIf='char.currLocation.name === loc.label' class="character-piece">
+                                {{char.characterName}}
+                            </div>
+                        </ng-container>
+                    </div>
+
                 </mat-grid-tile>
-                <ng-template #location_button_content>
-                    <mat-grid-tile class="location-buttons">
-                        <!-- place location -->
-                        <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{ loc.label }}</button>
+            </ng-template>
+        </ng-container>
+    </mat-grid-list>
 
-                        <!-- place characters on grid -->
-                        <div id="charactersOnMapBlock"> 
-                            <ng-container *ngFor="let char of characters"> 
-                                <!-- loop through each character and place in location if currently there -->
-                                <div *ngIf='char.currLocation.name === loc.label' class="character-piece">
-                                    {{char.characterName}}
-                                </div>
-                            </ng-container>
-                        </div>
-
-                    </mat-grid-tile>
-                </ng-template>
-            </ng-container>
-        </mat-grid-list>
-
-        <!-- game tools bar (right) -->
-        <div class="playerTools">
-            <h4>Your Cards</h4>
-            <div class="tool">
-                <div class="handCardType">
-                    <h5>Suspect Cards</h5>
-                    <mat-list role="list">
-                        <ng-container *ngFor="let card of player.handCards">
-                            <mat-list-item role="listitem" *ngIf='card.type === card_type_suspect'>
-                                {{card.name}}
-                            </mat-list-item>
-                        </ng-container>
-                    </mat-list>
-                </div>
-                <div class="handCardType">
-                    <h5>Weapon Cards</h5>
-                    <mat-list role="list">
-                        <ng-container *ngFor="let card of player.handCards">
-                            <mat-list-item role="listitem" *ngIf='card.type === card_type_weapon'>
-                                {{card.name}}
-                            </mat-list-item>
-                        </ng-container>
-                    </mat-list>
-                </div>
-                <div class="handCardType">
-                    <h5>Room Cards</h5>
-                    <mat-list role="list">
-                        <ng-container *ngFor="let card of player.handCards">
-                            <mat-list-item role="listitem" *ngIf='card.type === card_type_room'>
-                                {{card.name}}
-                            </mat-list-item>
-                        </ng-container>
-                    </mat-list>
-                </div>
+    <!-- game tools bar (right) -->
+    <div class="playerTools">
+        <h4>Your Cards</h4>
+        <div class="tool">
+            <div class="handCardType">
+                <h5>Suspect Cards</h5>
+                <mat-list role="list">
+                    <ng-container *ngFor="let card of player.handCards">
+                        <mat-list-item role="listitem" *ngIf='card.type === card_type_suspect'>
+                            {{card.name}}
+                        </mat-list-item>
+                    </ng-container>
+                </mat-list>
             </div>
-            <mat-divider></mat-divider>
-            <h4>Known Cards</h4>
-            <div class="tool">
-                <div class="knownCards">
-                    <mat-selection-list>
-                        <h5>Suspect Cards</h5>
-                        <mat-list-option style="font-size: small;" *ngFor="let char of characterNamesList">
-                          {{char}}
-                        </mat-list-option>
-                    </mat-selection-list>
-                </div>
-                <div class="knownCards">
-                    <mat-selection-list>
-                        <h5>Weapon Cards</h5>
-                        <mat-list-option style="font-size: small;" *ngFor="let weapon of weaponNamesList">
-                          {{weapon}}
-                        </mat-list-option>
-                    </mat-selection-list>
-                </div>
-                <div class="knownCards">
-                    <mat-selection-list>
-                        <h5>Room Cards</h5>
-                        <mat-list-option style="font-size: small;" *ngFor="let room of roomNamesList">
-                          {{room}}
-                        </mat-list-option>
-                    </mat-selection-list>
-                </div>
+            <div class="handCardType">
+                <h5>Weapon Cards</h5>
+                <mat-list role="list">
+                    <ng-container *ngFor="let card of player.handCards">
+                        <mat-list-item role="listitem" *ngIf='card.type === card_type_weapon'>
+                            {{card.name}}
+                        </mat-list-item>
+                    </ng-container>
+                </mat-list>
+            </div>
+            <div class="handCardType">
+                <h5>Room Cards</h5>
+                <mat-list role="list">
+                    <ng-container *ngFor="let card of player.handCards">
+                        <mat-list-item role="listitem" *ngIf='card.type === card_type_room'>
+                            {{card.name}}
+                        </mat-list-item>
+                    </ng-container>
+                </mat-list>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+        <h4>Known Cards</h4>
+        <div class="tool">
+            <div class="knownCards">
+                <mat-selection-list>
+                    <h5>Suspect Cards</h5>
+                    <mat-list-option style="font-size: small;" *ngFor="let char of characterNamesList">
+                        {{char}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+            <div class="knownCards">
+                <mat-selection-list>
+                    <h5>Weapon Cards</h5>
+                    <mat-list-option style="font-size: small;" *ngFor="let weapon of weaponNamesList">
+                        {{weapon}}
+                    </mat-list-option>
+                </mat-selection-list>
+            </div>
+            <div class="knownCards">
+                <mat-selection-list>
+                    <h5>Room Cards</h5>
+                    <mat-list-option style="font-size: small;" *ngFor="let room of roomNamesList">
+                        {{room}}
+                    </mat-list-option>
+                </mat-selection-list>
             </div>
         </div>
     </div>
-
-</body>
-
-</html>
+</div>
