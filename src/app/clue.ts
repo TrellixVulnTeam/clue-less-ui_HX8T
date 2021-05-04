@@ -201,7 +201,7 @@ export class Clue {
 
         // TODO: make-accusation button
         // if it's your turn
-        if ((this.player.isTurn) || (this.player.isTurn == true)) {
+        if ((this.player.isTurn) || (this.player.isTurn == "true")) {
             this.accuseButton.enable();
         } else {
             this.accuseButton.disable();
