@@ -13,6 +13,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GameComponent extends Clue implements OnInit {
 
+  displayedColumns: string[] = ['characterName', 'playerName', 'state', 'isTurn', 'active'];
+
   constructor(public route: ActivatedRoute, public playerService: PlayerService, public dialog: MatDialog) {
     super();
     this.gameId = route.snapshot.paramMap.get('gameId');
