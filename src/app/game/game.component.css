@@ -172,6 +172,14 @@ div.tool {
   /* background-color: aquamarine; */
 }
 
+div.tool table {
+  align-self: center;
+  width: 90%;
+  text-align: left;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
 mat-divider {
   position: relative;
   width: 90%;

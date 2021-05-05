@@ -78,6 +78,7 @@ export class Clue {
     eventMessage: string | undefined;
     suggestionCards: any | undefined;
     characters: any | undefined;
+    players: any | undefined;
     active: boolean | undefined;
 
     // player data
@@ -177,6 +178,8 @@ export class Clue {
         this.suggestionCards = data.suggestionCards;
         this.characters = data.characters;
 
+        let players:any = [];
+
         data.characters.forEach((character: any) => {
 
             if (character.characterName == this.charName) {
@@ -185,7 +188,14 @@ export class Clue {
                 this.playerName = this.player.playerName;
                 this.playerMessage = this.player.eventMessage;
             }
+
+            if (character.hasOwnProperty('playerName')) {
+                players.push(character);
+            }
         })
+
+        this.players = players;
+        console.log(this.players)
 
         this.updateEnabledButtons();
     }
