@@ -10,6 +10,8 @@ import { Clue } from '../clue';
 })
 export class WaitRoomComponent extends Clue implements OnInit {
 
+  displayedColumns: string[] = ['characterName', 'playerName', 'state', 'isTurn', 'active'];
+
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {
     super();
   } 
