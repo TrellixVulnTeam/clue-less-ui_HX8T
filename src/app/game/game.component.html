@@ -53,7 +53,7 @@
                 Submit Suggestion
             </button>
             <button class="normal-button" mat-button (click)="openRevealClueDialog()"
-                disabled="{{ openRevealClueDialogButton.disabled }}">
+                disabled="{{ openRevealClueDialogButton.disabled }}" matBadge="{{ revealClueNotification }}">
                 Reveal Clue
             </button>
             <button class="normal-button" mat-button (click)="openAcceptClueDialog()"
