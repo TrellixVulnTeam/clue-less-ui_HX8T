@@ -133,6 +133,7 @@ export class Clue {
     openRevealClueDialogButton = new ClueGameButton('reveal-clue');
     openAcceptClueDialogButton = new ClueGameButton('accept-clue');
     acceptClueNotification = ""
+    revealClueNotification = ""
     
 
     // set player state constants
@@ -232,8 +233,10 @@ export class Clue {
         // reveal-clue button
         if (this.player.state == this.player_state_reveal) {
             this.openRevealClueDialogButton.enable();
+            this.revealClueNotification = "1";
         } else {
             this.openRevealClueDialogButton.disable();
+            this.revealClueNotification = "";
         }
 
         // accept-clue button

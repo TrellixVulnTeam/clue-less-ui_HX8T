@@ -32,6 +32,7 @@ export class GameComponent extends Clue implements OnInit {
       },
       error => {
         console.log("ERROR:", error);
+        this.showPlayerMessage(); // replay player message assuming backend has guidance on error
       },
       () => {
         console.log("POST for completing turn is completed");
@@ -50,6 +51,7 @@ export class GameComponent extends Clue implements OnInit {
       },
       error => {
         console.log("ERROR:", error);
+        this.showPlayerMessage(); // replay player message assuming backend has guidance on error
       },
       () => {
         console.log("POST for moving location is completed");
@@ -68,6 +70,7 @@ export class GameComponent extends Clue implements OnInit {
       },
       error => {
         console.log("ERROR:", error);
+        this.showPlayerMessage(); // replay player message assuming backend has guidance on error
       },
       () => {
         console.log("POST for moving location is completed");
@@ -86,6 +89,7 @@ export class GameComponent extends Clue implements OnInit {
       },
       error => {
         console.log("ERROR:", error);
+        this.showPlayerMessage(); // replay player message assuming backend has guidance on error
       },
       () => {
         console.log("POST for moving location is completed");
