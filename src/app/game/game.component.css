@@ -80,14 +80,12 @@ mat-option {
 }
 
 #accuse-button {
-  background-color: #da5746;
+  background-color: #df8377;
 }
 
 .normal-button {
-  background-color: #8ee274ce;
+  background-color: #96e27ece;
 }
-
-
 
 
 /* GAME MAP */
@@ -114,30 +112,26 @@ div.game-container mat-grid-list {
   height: 80px;
   white-space: pre-wrap;
   color: #000000;
-  background-color: aquamarine;
+  background-color: rgb(150, 247, 179);
 }
 
 .location-buttons button:disabled {
-  background-color: #e2b0b0;
+  background-color: #e4cbcb;
 }
 
-/* mat-grid-tile {
-  overflow: visible;
-} */
-
 #charactersOnMapBlock {
-  position: absolute;
   display: block;
+  position: absolute;
+  height: auto;
+  top: 0px;
   right: 0px;
-  width: 80px;
-  height: 100%;
   /* background-color: aquamarine; */
 }
 
 div.character-piece {
   position: relative;
   display: block;
-  margin: 2px auto 0px auto;
+  margin: 2px auto auto auto;
   text-align: center;
   border-radius: 3px;
   font-size: 12px;

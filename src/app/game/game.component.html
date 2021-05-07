@@ -73,8 +73,7 @@
             <ng-template #location_button_content>
                 <mat-grid-tile class="location-buttons">
                     <!-- place location -->
-                    <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{
-                        loc.label }}</button>
+                    <button mat-stroked-button disabled="{{ loc.disabled }}" (click)="moveLocation(loc.label)">{{ loc.label }}</button>
 
                     <!-- place characters on grid -->
                     <div id="charactersOnMapBlock">
