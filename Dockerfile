@@ -1,5 +1,5 @@
 # Use official node image as the base image
-FROM node:latest as build
+FROM node:latest
 WORKDIR /usr/local/app
 COPY ./ /usr/local/app/
 RUN npm install
