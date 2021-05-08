@@ -1,11 +1,13 @@
-### STAGE 1: Build ###
-FROM node:12.7-alpine AS build
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-RUN npm install
+# # Builds angular base image (with libraries) for clue frontend image
+FROM node:latest as build
+WORKDIR /
 COPY . .
-RUN npm run build
+RUN npm install
+RUN npm install -g @angular/cli
+ENTRYPOINT ng serve --host 0.0.0.0 --port 4200 --disable-host-check
 
-### STAGE 2: Run ###
-FROM nginx:1.17.1-alpine
-COPY --from=build /usr/src/app/dist/ui /usr/share/nginx/html
+# # Production Server: Serve app with nginx server
+# FROM nginx:latest
+# COPY --from=build /usr/local/app/dist/ui /usr/share/nginx/html
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# EXPOSE 80
