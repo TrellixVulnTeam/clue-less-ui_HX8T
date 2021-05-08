@@ -119,6 +119,14 @@ div.game-container mat-grid-list {
   background-color: #e4cbcb;
 }
 
+.location-buttons button.hallway {
+  background-color: rgb(240, 179, 66)
+}
+
+.location-buttons button.hallway:disabled {
+  background-color: rgba(231, 195, 127, 0.671);
+}
+
 #charactersOnMapBlock {
   display: block;
   position: absolute;
