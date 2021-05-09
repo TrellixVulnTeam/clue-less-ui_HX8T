@@ -319,6 +319,46 @@ div.knownCards mat-selection-list mat-list-option {
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+#playerErrorMessage {
+  visibility: hidden;
+  /* Hidden by default. Visible on click */
+  min-width: 250px;
+  width: 30%;
+
+  /* Set a default minimum width */
+  margin-right: -15%;
+  /* Divide value of min-width by 2 */
+  background-color: #333;
+  /* Black background color */
+  color: #fff;
+  /* White text color */
+  text-align: center;
+  /* Centered text */
+  border-radius: 2px;
+  /* Rounded borders */
+  padding: 16px;
+  /* Padding */
+  position: absolute;
+  /* Sit on top of the screen */
+  z-index: 9999 !important;
+  /* Add a z-index if needed */
+  right: 25%;
+  /* Center the playerMessage */
+  top: 30px;
+  /* 30px from the bottom */
+}
+
+/* Show the playerMessage when clicking on a button (class added with JavaScript) */
+
+#playerErrorMessage.show {
+  visibility: visible;
+  /* Show the playerMessage */
+  /* Add animation: Take 0.5 seconds to fade in and out the playerMessage.
+    However, delay the fade out process for 2.5 seconds */
+  -webkit-animation-player: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
 /* Animations to fade the gameMessage/playerMessage in and out */
 
 @-webkit-keyframes fadein {

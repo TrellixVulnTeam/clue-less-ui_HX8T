@@ -11,6 +11,7 @@ import { Clue } from '../clue';
 export class WaitRoomComponent extends Clue implements OnInit {
 
   displayedColumns: string[] = ['characterName', 'playerName', 'state', 'isTurn', 'active'];
+  playerErrorMessage: string | undefined;
 
   constructor(private router: Router, private route: ActivatedRoute, private playerService: PlayerService) {
     super();
@@ -27,9 +28,9 @@ export class WaitRoomComponent extends Clue implements OnInit {
         this.router.navigate([`/game/${this.gameId}/${this.charName}`]);
       },
       err => {
-        this.player.eventMessage = err.error.error;
-        this.showPlayerMessage();
         console.log("ERROR:", err);
+        this.playerErrorMessage = err.error.error;
+        this.showPlayerErrorMessage(); // replay player message assuming backend has guidance on error
       },
       () => {
         console.log("POST for start game submitted.");
@@ -37,10 +38,10 @@ export class WaitRoomComponent extends Clue implements OnInit {
   };
 
   // show player message
-  showPlayerMessage() {
+  showPlayerErrorMessage() {
 
     // Get the snackbar DIV
-    var x: any = document.getElementById("playerMessage");
+    var x: any = document.getElementById("playerErrorMessage");
 
     // Add the "show" class to DIV
     x.className = "show";

@@ -13,6 +13,7 @@ import { MatDialog, MatDialogConfig, MatDialogModule, MatDialogRef, MAT_DIALOG_D
 export class GameComponent extends Clue implements OnInit {
 
   displayedColumns: string[] = ['characterName', 'playerName', 'state', 'isTurn', 'active'];
+  playerErrorMessage: string | undefined;
 
   constructor(public route: ActivatedRoute, public playerService: PlayerService, public dialog: MatDialog) {
     super();
@@ -52,8 +53,8 @@ export class GameComponent extends Clue implements OnInit {
       },
       err => {
         console.log("ERROR:", err);
-        this.player.eventMessage = err.error.error;
-        this.showPlayerMessage(); // replay player message assuming backend has guidance on error
+        this.playerErrorMessage = err.error.error;
+        this.showPlayerErrorMessage(); // replay player message assuming backend has guidance on error
       },
       () => {
         console.log("POST for making suggestion submitted");
@@ -167,6 +168,18 @@ export class GameComponent extends Clue implements OnInit {
   showGameMessage() {
     // Get the snackbar DIV
     var x: any = document.getElementById("gameMessage");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+  }
+  // show player message
+  showPlayerErrorMessage() {
+
+    // Get the snackbar DIV
+    var x: any = document.getElementById("playerErrorMessage");
 
     // Add the "show" class to DIV
     x.className = "show";
