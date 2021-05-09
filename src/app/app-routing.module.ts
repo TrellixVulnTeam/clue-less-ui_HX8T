@@ -8,8 +8,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'wait-room/:gameId/:charName', component: WaitRoomComponent },
   { path: 'game/:gameId/:charName', component: GameComponent },
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
-  { path: '**',   redirectTo: '/login', pathMatch: 'full' },
+  { path: '',   redirectTo: 'login', pathMatch: 'full' },
+  { path: '**',   redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
