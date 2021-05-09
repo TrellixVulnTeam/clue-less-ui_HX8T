@@ -41,7 +41,7 @@ table {
     background-color: rgb(158, 200, 228);
 }
 
-#playerMessage {
+#playerErrorMessage {
     visibility: hidden;
     /* Hidden by default. Visible on click */
     min-width: 250px;
@@ -72,7 +72,7 @@ table {
   
   /* Show the playerMessage when clicking on a button (class added with JavaScript) */
   
-  #playerMessage.show {
+  #playerErrorMessage.show {
     visibility: visible;
     /* Show the playerMessage */
     /* Add animation: Take 0.5 seconds to fade in and out the playerMessage.
