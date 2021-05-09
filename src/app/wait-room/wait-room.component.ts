@@ -26,12 +26,13 @@ export class WaitRoomComponent extends Clue implements OnInit {
         this.refreshData(data);
         this.router.navigate([`/game/${this.gameId}/${this.charName}`]);
       },
-      error => {
+      err => {
+        this.player.eventMessage = err.error.error;
         this.showPlayerMessage();
-        console.log("ERROR:", error);
+        console.log("ERROR:", err);
       },
       () => {
-        console.log("POST for moving location is completed");
+        console.log("POST for start game submitted.");
       })
   };
 

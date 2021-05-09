@@ -30,12 +30,13 @@ export class GameComponent extends Clue implements OnInit {
       data => {
         this.gameComponentRefreshData(data);
       },
-      error => {
-        console.log("ERROR:", error);
+      err => {
+        console.log("ERROR:", err);
+        this.player.eventMessage = err.error.error;
         this.showPlayerMessage(); // replay player message assuming backend has guidance on error
       },
       () => {
-        console.log("POST for completing turn is completed");
+        console.log("POST for completing turn submitted");
       })
   };
 
@@ -49,12 +50,13 @@ export class GameComponent extends Clue implements OnInit {
       data => {
         this.gameComponentRefreshData(data);
       },
-      error => {
-        console.log("ERROR:", error);
+      err => {
+        console.log("ERROR:", err);
+        this.player.eventMessage = err.error.error;
         this.showPlayerMessage(); // replay player message assuming backend has guidance on error
       },
       () => {
-        console.log("POST for moving location is completed");
+        console.log("POST for making suggestion submitted");
       })
   };
 
