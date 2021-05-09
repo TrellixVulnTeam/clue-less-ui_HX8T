@@ -1,47 +1,45 @@
-<html>
-  <body>
-    <h2>
-      <span>
-        Welcome to the Tudor Mansion, {{ charName }}<br>
-        Your Game ID: {{ gameId }}
-      </span>
-    </h2>
-    
-    <div>
-      <img src="assets/images/wait-room/mansion.png">
-      <div>
-        <table mat-table [dataSource]="players" class="mat-elevation-z8">
-          <ng-container matColumnDef="characterName">
-            <th mat-header-cell *matHeaderCellDef> Character </th>
-            <td mat-cell *matCellDef="let element"> {{element.characterName}} </td>
-          </ng-container>
-    
-          <ng-container matColumnDef="playerName">
-            <th mat-header-cell *matHeaderCellDef> Player </th>
-            <td mat-cell *matCellDef="let element"> {{element.playerName}} </td>
-          </ng-container>
-    
-          <ng-container matColumnDef="state">
-            <th mat-header-cell *matHeaderCellDef> State </th>
-            <td mat-cell *matCellDef="let element"> {{element.state}} </td>
-          </ng-container>
-    
-          <ng-container matColumnDef="isTurn">
-            <th mat-header-cell *matHeaderCellDef> Is Turn </th>
-            <td mat-cell *matCellDef="let element"> {{element.isTurn}} </td>
-          </ng-container>
-    
-          <ng-container matColumnDef="active">
-            <th mat-header-cell *matHeaderCellDef> Active </th>
-            <td mat-cell *matCellDef="let element"> {{element.active}} </td>
-          </ng-container>
-    
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-      </div>
-    </div>
-    
-    <button id="startGameButton" mat-raised-button disabled="false" (click)="startGame()">start-game</button>
-  </body>
-</html>
+<div id="playerMessage">Player Message: {{ player.eventMessage }}</div>
+
+<h2>
+  <span>
+    Welcome to the Tudor Mansion, {{ charName }}<br>
+    Your Game ID: {{ gameId }}
+  </span>
+</h2>
+
+<div>
+  <img src="assets/images/wait-room/mansion.png">
+  <div>
+    <table mat-table [dataSource]="players" class="mat-elevation-z8">
+      <ng-container matColumnDef="characterName">
+        <th mat-header-cell *matHeaderCellDef> Character </th>
+        <td mat-cell *matCellDef="let element"> {{element.characterName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="playerName">
+        <th mat-header-cell *matHeaderCellDef> Player </th>
+        <td mat-cell *matCellDef="let element"> {{element.playerName}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef> State </th>
+        <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="isTurn">
+        <th mat-header-cell *matHeaderCellDef> Is Turn </th>
+        <td mat-cell *matCellDef="let element"> {{element.isTurn}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="active">
+        <th mat-header-cell *matHeaderCellDef> Active </th>
+        <td mat-cell *matCellDef="let element"> {{element.active}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+</div>
+
+<button id="startGameButton" mat-raised-button disabled="false" (click)="startGame()">start-game</button>

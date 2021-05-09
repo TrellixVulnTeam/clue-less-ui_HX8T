@@ -26,13 +26,28 @@ export class WaitRoomComponent extends Clue implements OnInit {
         this.refreshData(data);
         this.router.navigate([`/game/${this.gameId}/${this.charName}`]);
       },
-      error => {
-        console.log("ERROR:", error);
+      err => {
+        this.player.eventMessage = err.error.error;
+        this.showPlayerMessage();
+        console.log("ERROR:", err);
       },
       () => {
-        console.log("POST for moving location is completed");
+        console.log("POST for start game submitted.");
       })
   };
+
+  // show player message
+  showPlayerMessage() {
+
+    // Get the snackbar DIV
+    var x: any = document.getElementById("playerMessage");
+
+    // Add the "show" class to DIV
+    x.className = "show";
+
+    // After 3 seconds, remove the show class from DIV
+    setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+  }
 
   ngOnInit() {
     
